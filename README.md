@@ -1,5 +1,5 @@
 # backendClassifier
-## Site para classificação manual de insetos
+## Site para classificação manual de insetos utilizando django
 
 
 
