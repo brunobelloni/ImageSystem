@@ -4,7 +4,6 @@ import base64
 # Create your models here.
 class Imagem(models.Model):
     imagem = models.ImageField(upload_to='images')
-    print("Teste: " + str(imagem))
     descricao = models.CharField(max_length=200)
     pub_date = models.DateTimeField('data de publicacao')
 
