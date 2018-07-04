@@ -2,23 +2,66 @@ from django.db import models
 import base64
 
 # Create your models here.
-class Imagem(models.Model):
-    imagem = models.ImageField(upload_to='images')
-    descricao = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('data de publicacao')
+
+class Trap(models.Model):
+    description = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.descricao
+        return self.description
 
-class Especie(models.Model):
-    nome = models.CharField(max_length=200)
+    class Meta:
+        verbose_name = 'Trap'
+        verbose_name_plural = 'Traps'
+
+
+class Trap_Image(models.Model):
+    date = models.DateField('publication date')
+    trap = models.ForeignKey(Trap, on_delete=models.CASCADE)
+    image = models.ImageField()
 
     def __str__(self):
-        return self.nome
+        return self.id
 
-class Inseto(models.Model):
-    imagem = models.ForeignKey(Imagem, on_delete=models.CASCADE)
-    especie = models.ForeignKey(Especie, on_delete=models.CASCADE)
+    class Meta:
+        verbose_name = 'Image'
+        verbose_name_plural = 'Images'
 
-class Dado(models.Model):
-    inseto = models.ForeignKey(Inseto, on_delete=models.CASCADE)
+class Insect(models.Model):
+    description = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        verbose_name = 'Insect'
+        verbose_name_plural = 'Insects'
+
+class Variable(models.Model):
+    description = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        verbose_name = 'Variable'
+        verbose_name_plural = 'Variables'
+
+class Trap_Image_Data(models.Model):
+    image = models.ForeignKey(Trap_Image, on_delete=models.CASCADE)
+    variable = models.ForeignKey(Variable, on_delete=models.CASCADE)
+    insect = models.ForeignKey(Insect, on_delete=models.CASCADE)
+
+    ''' Insect Data '''
+    value = models.DecimalField(max_digits=10, decimal_places=5)
+
+    ''' Coordinate Points '''
+    cordX = models.IntegerField()
+    cordY = models.IntegerField()
+
+
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        verbose_name = 'Insect_Data'
+        verbose_name_plural = 'Insect_Data'
