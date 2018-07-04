@@ -11,16 +11,21 @@
 
 <body class="text-center">
 
-  <form method="POST" class="form-signin">
+  <form action="{% url 'login' %}" method="POST" class="form-signin">
     {% csrf_token %}
+
     <h1 class="h3 mb-3 font-weight-normal">Must be superuser</h1>
 
-      {% for field in form %}
-      <div class="input-group">
-        <input class="form-control" placeholder="{{ field.html_name }}"/>
-      </div>
-      {% endfor %}
-      
+    {% if form.errors %}
+        <p style="color: red">You username an password didn't match!</p>
+    {% endif %}
+
+    <div class="fieldWrapper">
+      <tr><td><input class="form-control" type="text" name="username" placeholder="Username" autofocus maxlength="254" required id="id_username"/></td></tr>
+      <tr><td><input class="form-control" type="password" name="password" placeholder="Password" required id="id_password"/></td></tr>
+    </div>
+
+
     <input type="submit" class="btn btn-lg btn-primary btn-block" value="Login">
     <input type="hidden" name="next" value="{{ next }}">
   </form>
