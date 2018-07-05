@@ -1,7 +1,4 @@
 from django.db import models
-import base64
-
-# Create your models here.
 
 class Trap(models.Model):
     description = models.CharField(max_length=200)
@@ -15,16 +12,18 @@ class Trap(models.Model):
 
 
 class Trap_Image(models.Model):
-    date = models.DateField('publication date')
+    date = models.DateField(auto_now=True)
     trap = models.ForeignKey(Trap, on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = models.ImageField(upload_to='images/%Y/%m/%d')
 
     def __str__(self):
-        return self.id
+        return "an image"
 
     class Meta:
         verbose_name = 'Image'
         verbose_name_plural = 'Images'
+
+
 
 class Insect(models.Model):
     description = models.CharField(max_length=100)
@@ -36,6 +35,8 @@ class Insect(models.Model):
         verbose_name = 'Insect'
         verbose_name_plural = 'Insects'
 
+
+
 class Variable(models.Model):
     description = models.CharField(max_length=100)
 
@@ -45,6 +46,8 @@ class Variable(models.Model):
     class Meta:
         verbose_name = 'Variable'
         verbose_name_plural = 'Variables'
+
+
 
 class Trap_Image_Data(models.Model):
     image = models.ForeignKey(Trap_Image, on_delete=models.CASCADE)
