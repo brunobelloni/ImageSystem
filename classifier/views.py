@@ -3,28 +3,32 @@ from .models import Trap_Image
 from django.urls import reverse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import (TemplateView, ListView, DetailView,
-                                  CreateView, UpdateView, DeleteView)
 
 def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
     return render(request, 'classifier/index.html')
 
-def images(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('login'))
-    return render(request, 'classifier/images.html')
-
 def insects(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
     return render(request, 'classifier/insects.html')
 
-class CreateImageView(LoginRequiredMixin, CreateView):
-    login_url = '/login/'
-    redirect_field_name = 'classifier/images.html'
+def images(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    else:
+        if request.method == "POST":
+            image_form = ImageForm(request.POST)
 
-    form_class = ImageForm
-    model = Trap_Image
+            if image_form.is_valid():
+                # process the data in form.cleaned_data as required
+                # ...
+                # redirect to a new URL:
+                image = image_form.save()
+            else:
+                print(image_form.errors)
+        else:
+            image_form = ImageForm()
+            
+        return render(request, 'classifier/images.html', {'image_form': image_form})
