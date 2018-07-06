@@ -15,7 +15,7 @@ class Trap(models.Model):
 class Trap_Image(models.Model):
     date = models.DateField(auto_now=True)
     trap = models.ForeignKey(Trap, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='images/%Y/%m/%d')
+    image = models.TextField(max_length=None)
 
     def __str__(self):
         return "an image"

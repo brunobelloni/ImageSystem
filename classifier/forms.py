@@ -5,11 +5,7 @@ from .models import Trap_Image, Trap, Insect
 class ImageForm(forms.ModelForm):
     class Meta():
         model = Trap_Image
-        fields = ('date','trap','image')
-
-        widgets = {
-            'date': forms.DateInput(format='%d/%m/%Y'),
-        }
+        fields = ('trap','image')
 
 
 class InsectForm(forms.ModelForm):

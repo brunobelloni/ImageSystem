@@ -1,4 +1,4 @@
-from .forms import ImageForm
+from .forms import ImageForm, InsectForm
 from .models import Trap_Image
 from django.urls import reverse
 from django.shortcuts import render
@@ -17,6 +17,7 @@ def insects(request):
         form = InsectForm(request.POST)
         if form.is_valid():
             insects = form.save()
+            form = InsectForm()
     else:
         form = InsectForm()
     return render(request, 'classifier/insects.html', {'form': form})

@@ -4,21 +4,21 @@
   <h1>you are at images</h1>
 
 
-  <!-- <input type="file" onchange="previewFile()"><br>
-  <img src="" height="500" alt=""> -->
-
-  <h1>Image Upload</h1>
-	<!-- <textarea id="base"></textarea> -->
 
   <div class="form-group">
-    <input id="fileinput" type="file" accept="image/gif, image/jpeg, image/png" onchange="readURL(this);" /> <br><br>
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="base" rows="3"></textarea>
 
     <form method="POST" class="post-form">
       {% csrf_token %}
 
-      {{ form }}
+      <label for="exampleFormControlTextarea1">Trap</label>
+      {{ form.trap }}
+
+      <br>
+      <br>
+
+      <label for="exampleFormControlTextarea1">Image:</label>
+      <input id="fileinput" type="file" accept="image/gif, image/jpeg, image/png" onchange="readURL(this);" /> <br><br>
+      <p><textarea name="image" class="form-control" required id="id_image"></textarea></p>
 
       <button type="submit" class="save btn btn-default">Save</button>
     </form>
