@@ -12,23 +12,23 @@ def index(request):
 def insects(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
-    return render(request, 'classifier/insects.html')
+
+    if request.method == "POST":
+        form = InsectForm(request.POST)
+        if form.is_valid():
+            insects = form.save()
+    else:
+        form = InsectForm()
+    return render(request, 'classifier/insects.html', {'form': form})
 
 def images(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
-    else:
-        if request.method == "POST":
-            image_form = ImageForm(request.POST)
 
-            if image_form.is_valid():
-                # process the data in form.cleaned_data as required
-                # ...
-                # redirect to a new URL:
-                image = image_form.save()
-            else:
-                print(image_form.errors)
-        else:
-            image_form = ImageForm()
-            
-        return render(request, 'classifier/images.html', {'image_form': image_form})
+    if request.method == "POST":
+        form = ImageForm(request.POST)
+        if form.is_valid():
+            image = form.save()
+    else:
+        form = ImageForm()
+    return render(request, 'classifier/images.html', {'form': form})
