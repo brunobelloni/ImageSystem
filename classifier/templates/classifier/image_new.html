@@ -1,37 +1,33 @@
 {% extends "classifier/base.html" %}
-
 {% block title %} New Image - Classifier {% endblock %}
-
 {% block content %}
-
 <h1>New Image</h1>
 
-<form style="margin-top: 20px;" method="POST" class="post-form">
-  {% csrf_token %}
+<div class="col-md-8 offset-md-2">
+  <form style="margin-top: 20px;" method="POST" class="post-form">
+    {% csrf_token %}
 
-  <div class="form-group">
-    <select name="trap" class="custom-select " required id="id_trap">
-    {% if traps %}
-      <option value="" selected>Choose a Trap</option>
-      {% for trap in traps %}
+    <div class="form-group">
+      <select name="trap" class="custom-select " required id="id_trap">
+        {% if traps %}
+        <option value="" selected>Choose a Trap</option>
+        {% for trap in traps %}
         <option value="{{ trap.id }}">{{ trap.description }}</option>
-      {% endfor %}
-    {% else %}
-      <option value="" selected>No trap registered</option>
-    {% endif %}
-    </select>
-  </div>
-
-  <div class="form-group">
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="fileinput" accept="image/gif, image/jpeg, image/png" required onchange="readURL(this);" />
-      <label class="custom-file-label" for="customFile">Choose an Image</label>
-      <p><textarea name="image" style="display:none;" class="form-control-" required id="id_image"></textarea></p>
+        {% endfor %}
+        {% else %}
+        <option value="" selected>No trap registered</option>
+        {% endif %}
+      </select>
     </div>
-  </div>
 
-
-  <button type="submit" class="save btn btn-success float-right">Save</button>
-</form>
-
+    <div class="form-group">
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="fileinput" accept="image/gif, image/jpeg, image/png" required onchange="readURL(this);" />
+        <label class="custom-file-label" for="customFile">Choose an Image</label>
+        <p><textarea name="image" style="display:none;" class="form-control-" required id="id_image"></textarea></p>
+      </div>
+    </div>
+    <button type="submit" class="save btn btn-success float-right">Save</button>
+  </form>
+</div>
 {% endblock %}
