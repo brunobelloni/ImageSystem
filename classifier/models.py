@@ -18,7 +18,7 @@ class Trap_Image(models.Model):
     image = models.TextField(max_length=None)
 
     def __str__(self):
-        return "an image"
+        return str(self.id)
 
     class Meta():
         verbose_name = 'Image'

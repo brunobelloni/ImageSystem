@@ -1,31 +1,28 @@
 {% extends "classifier/base.html" %}
 
+{% block title %} Images - Classifier {% endblock %}
+
 {% block content %}
-  <h1>you are at images</h1>
+
+<div class="row">
+  <h1 class="offset-1">Images</h1>
+    <div style="position: absolute; left: 80%;" class="">
+      <a href="{% url 'image_new' %}" class="btn btn-success">New</a>
+      <a href="#" class="btn btn-danger">Delete</a>
+    </div>
+</div>
 
 
-
-  <div class="form-group">
-
-    <form method="POST" class="post-form">
-      {% csrf_token %}
-
-      <label for="exampleFormControlTextarea1">Trap</label>
-      {{ form.trap }}
-
-      <br>
-      <br>
-
-      <label for="exampleFormControlTextarea1">Image:</label>
-      <input id="fileinput" type="file" accept="image/gif, image/jpeg, image/png" onchange="readURL(this);" /> <br><br>
-      <p><textarea name="image" class="form-control" required id="id_image"></textarea></p>
-
-      <button type="submit" class="save btn btn-default">Save</button>
-    </form>
-
-  </div>
-
-
-
+<div style="margin-top: 20px;" class="row">
+  {% if display_img %}
+  {% for img in display_img %}
+    <div class="col-md-6">
+      <div class="card mb-6 box-shadow">
+        <img class="card-img-top" src="{{ img.image }}" alt="Card image cap">
+      </div>
+    </div>
+  {% endfor %}
+  {% endif %}
+</div>
 
 {% endblock %}
