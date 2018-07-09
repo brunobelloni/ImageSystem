@@ -2,8 +2,12 @@
 {% block title %} Insects - Classifier {% endblock %}
 
 {% block content %}
-
-<h1>New Insect</h1>
+<div class="row">
+  <h1 class="offset-1">New Insect</h1>
+  <div style="position: absolute; left: 80%;" class="">
+    <a href="{% url 'insects' %}" class="btn btn-danger">Back</a>
+  </div>
+</div>
 
 <div class="col-md-8 offset-md-2">
   <form style="margin-top: 20px;" method="POST" class="post-form">

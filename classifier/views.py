@@ -1,7 +1,7 @@
-from .models import Trap_Image
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from .forms import ImageForm, InsectForm, Trap, Insect
+from .models import Trap_Image, Trap, Insect
+from .forms import ImageForm, InsectForm, TrapForm
 from django.shortcuts import render, get_object_or_404, redirect
 
 def index(request):
@@ -92,3 +92,43 @@ def image_detail(request, pk):
     img = get_object_or_404(Trap_Image, pk=pk)
 
     return render(request, 'classifier/image/detail.html', {'img': img})
+
+
+''' Traps '''
+def traps(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+
+    traps = Trap.objects.all()
+
+    return render(request, 'classifier/trap/main.html', {'traps': traps})
+
+def trap_new(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+
+    if request.method == "POST":
+        form = TrapForm(request.POST)
+        if form.is_valid():
+            trap = form.save()
+            return HttpResponseRedirect(reverse('traps'))
+    else:
+        form = TrapForm()
+
+    return render(request, 'classifier/trap/new.html', {'form': form})
+
+def trap_delete(request, pk):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+
+    trap = get_object_or_404(Trap, pk=pk)
+    trap.delete()
+    return redirect('traps')
+
+def trap_detail(request, pk):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+
+    trap = get_object_or_404(Trap, pk=pk)
+
+    return render(request, 'classifier/trap/detail.html', {'trap': trap})

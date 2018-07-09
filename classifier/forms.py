@@ -11,3 +11,8 @@ class InsectForm(forms.ModelForm):
     class Meta():
         model = Insect
         fields = ('description',)
+
+class TrapForm(forms.ModelForm):
+    class Meta():
+        model = Trap
+        fields = ('description',)
