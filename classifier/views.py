@@ -24,7 +24,6 @@ def insect_new(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
 
-
     if request.method == "POST":
         form = InsectForm(request.POST)
         if form.is_valid():
