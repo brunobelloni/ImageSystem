@@ -1,14 +1,38 @@
-{% extends "classifier/base.html" %}
+{% extends "classifier/base.html" %} {% block title %} Insects - Classifier {% endblock %} {% block content %}
 
-{% block title %} Insects - Classifier {% endblock %}
+<!-- <form method="POST" class="post-form">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit" class="save btn btn-default">Save</button>
+</form> -->
 
-{% block content %}
-  <h1>you are at insects</h1>
+<div class="row">
+  <h1 class="offset-1">Insects</h1>
+  <div style="position: absolute; left: 80%;" class="">
+    <a href="{% url 'insects_new' %}" class="btn btn-success">New</a>
+    <a href="#" class="btn btn-danger">Delete</a>
+  </div>
+</div>
 
-  <form method="POST" class="post-form">
-     {% csrf_token %}
-     {{ form.as_p }}
-     <button type="submit" class="save btn btn-default">Save</button>
-  </form>
+<div class="col-md-10 offset-md-1">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if insec %}
+      {% for insect in insec %}
+      <tr>
+        <th scope="row">{{ insect.id }}</th>
+        <td>{{ insect.description }}</td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
 
 {% endblock %}

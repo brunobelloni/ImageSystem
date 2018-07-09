@@ -1,27 +1,25 @@
 {% extends "classifier/base.html" %}
-
 {% block title %} Images - Classifier {% endblock %}
 
 {% block content %}
 
 <div class="row">
   <h1 class="offset-1">Images</h1>
-    <div style="position: absolute; left: 80%;" class="">
-      <a href="{% url 'image_new' %}" class="btn btn-success">New</a>
-      <a href="#" class="btn btn-danger">Delete</a>
-    </div>
+  <div style="position: absolute; left: 80%;" class="">
+    <a href="{% url 'image_new' %}" class="btn btn-success">New</a>
+    <a href="#" class="btn btn-danger">Delete</a>
+  </div>
 </div>
-
 
 <div style="margin-top: 20px;" class="row">
   {% if display_img %}
-  {% for img in display_img %}
+    {% for img in display_img %}
     <div class="col-md-6">
-      <div class="card mb-6 box-shadow">
-        <img class="card-img-top" src="{{ img.image }}" alt="Card image cap">
+      <div class="card mb-6">
+        <img style="height: 350px; width: 100%; object-fit: cover;" class="card-img-top responsive-img" src="{{ img.image }}" alt="Card image cap">
       </div>
     </div>
-  {% endfor %}
+    {% endfor %}
   {% endif %}
 </div>
 
