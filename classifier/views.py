@@ -51,7 +51,6 @@ def insect_detail(request, pk):
     return render(request, 'classifier/insect/detail.html', {'insect': insect})
 
 
-
 ''' Image '''
 def images(request):
     if not request.user.is_authenticated:

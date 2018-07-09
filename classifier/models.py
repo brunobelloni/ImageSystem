@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Trap(models.Model):
     description = models.CharField(max_length=200)
 
@@ -10,7 +9,6 @@ class Trap(models.Model):
     class Meta():
         verbose_name = 'Trap'
         verbose_name_plural = 'Traps'
-
 
 class Trap_Image(models.Model):
     date = models.DateField(auto_now=True)
@@ -24,7 +22,6 @@ class Trap_Image(models.Model):
         verbose_name = 'Image'
         verbose_name_plural = 'Images'
 
-
 class Insect(models.Model):
     description = models.CharField(max_length=100)
 
@@ -35,7 +32,6 @@ class Insect(models.Model):
         verbose_name = 'Insect'
         verbose_name_plural = 'Insects'
 
-
 class Variable(models.Model):
     description = models.CharField(max_length=100)
 
@@ -45,7 +41,6 @@ class Variable(models.Model):
     class Meta():
         verbose_name = 'Variable'
         verbose_name_plural = 'Variables'
-
 
 class Trap_Image_Data(models.Model):
     image = models.ForeignKey(Trap_Image, on_delete=models.CASCADE)

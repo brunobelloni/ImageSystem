@@ -3,8 +3,6 @@ from .models import (Trap, Trap_Image,
                      Insect, Variable,
                      Trap_Image_Data,)
 
-# Register your models here.
-
 admin.site.register(Trap)
 admin.site.register(Insect)
 admin.site.register(Variable)
