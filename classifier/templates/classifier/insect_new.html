@@ -1,0 +1,21 @@
+{% extends "classifier/base.html" %}
+{% block title %} Insects - Classifier {% endblock %}
+
+{% block content %}
+
+<h1>New Insect</h1>
+
+<div class="col-md-8 offset-md-2">
+  <form style="margin-top: 20px;" method="POST" class="post-form">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="formGroupExampleInput">Description</label>
+      <input type="text" name="description" class="form-control" id="id_description" required placeholder="Insect description">
+    </div>
+
+    <button type="submit" class="save btn btn-success float-right">Save</button>
+  </form>
+</div>
+
+{% endblock %}

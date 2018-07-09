@@ -1,13 +1,25 @@
 {% extends "classifier/base.html" %}
 {% block title %} Images - Classifier {% endblock %}
 
+{% block aditional %}
+<style>
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    transform: scale(1.01);
+}
+</style>
+{% endblock %}
+
+
 {% block content %}
 
 <div class="row">
   <h1 class="offset-1">Images</h1>
   <div style="position: absolute; left: 80%;" class="">
-    <a href="{% url 'image_new' %}" class="btn btn-success">New</a>
-    <a href="#" class="btn btn-danger">Delete</a>
+    <a href="{% url 'image_new' %}" class="btn btn-success">New Image</a>
   </div>
 </div>
 
@@ -15,8 +27,8 @@
   {% if display_img %}
     {% for img in display_img %}
     <div class="col-md-6">
-      <div class="card mb-6">
-        <img style="height: 350px; width: 100%; object-fit: cover;" class="card-img-top responsive-img" src="{{ img.image }}" alt="Card image cap">
+      <div style="margin: 15px;" class="card mb-6">
+        <a href="{% url 'image_detail' pk=img.id %}"><img style="height: 350px; width: 100%; object-fit: cover;" class="card-img-top zoom" src="{{ img.image }}" alt="Card image cap"></a>
       </div>
     </div>
     {% endfor %}
