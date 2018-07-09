@@ -1,6 +1,5 @@
 <!DOCTYPE html> {% load static %}
 <html>
-
 <head>
   <meta charset="utf-8">
   <title> {% block title %} {% endblock %}</title>
@@ -24,7 +23,7 @@
         <ul class="navbar-nav mr-auto">
           <li {% if request.path == "/classifier/images/" %} class="active" {% endif %}><a class="nav-link" href="{% url 'images' %}">Images</a></li>
           <li {% if request.path == "/classifier/insects/" %} class="active" {% endif %}><a class="nav-link" href="{% url 'insects' %}">Insects</a></li>
-          <li {% if request.path == "/classifier/insects/" %} class="active" {% endif %}><a class="nav-link" href="{% url 'traps' %}">Traps</a></li>
+          <li {% if request.path == "/classifier/traps/" %} class="active" {% endif %}><a class="nav-link" href="{% url 'traps' %}">Traps</a></li>
         </ul>
 
         <ul class="navbar-nav">
@@ -42,5 +41,4 @@
     </div>
   </div>
 </body>
-
 </html>
