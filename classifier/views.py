@@ -17,7 +17,7 @@ def insects(request):
 
     insec = Insect.objects.all()
 
-    return render(request, 'classifier/insects.html', {'insec': insec})
+    return render(request, 'classifier/insect/insects.html', {'insec': insec})
 
 
 def insect_new(request):
@@ -32,7 +32,15 @@ def insect_new(request):
             return HttpResponseRedirect(reverse('insects'))
     else:
         form = InsectForm()
-    return render(request, 'classifier/insect_new.html', {'form': form})
+    return render(request, 'classifier/insect/insect_new.html', {'form': form})
+
+def insect_delete(request, pk):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+
+    insect = get_object_or_404(Insect, pk=pk)
+    insect.delete()
+    return redirect('insects')
 
 def insect_detail(request, pk):
     if not request.user.is_authenticated:
@@ -40,7 +48,7 @@ def insect_detail(request, pk):
 
     insect = get_object_or_404(Insect, pk=pk)
 
-    return render(request, 'classifier/image_detail.html', {'insect': insect})
+    return render(request, 'classifier/insect/insect_detail.html', {'insect': insect})
 
 
 
@@ -51,8 +59,7 @@ def images(request):
 
     display_img = Trap_Image.objects.all()
 
-    return render(request, 'classifier/images.html', {'display_img': display_img})
-
+    return render(request, 'classifier/image/images.html', {'display_img': display_img})
 
 def image_new(request):
     if not request.user.is_authenticated:
@@ -68,18 +75,16 @@ def image_new(request):
     else:
         form = ImageForm()
 
-    return render(request, 'classifier/image_new.html', {'form': form,
-
+    return render(request, 'classifier/image/image_new.html', {'form': form,
                                                          'traps': traps})
+
 def image_delete(request, pk):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
 
     img = get_object_or_404(Trap_Image, pk=pk)
-    img_pk = img.pk
     img.delete()
     return redirect('images')
-
 
 def image_detail(request, pk):
     if not request.user.is_authenticated:
@@ -87,4 +92,4 @@ def image_detail(request, pk):
 
     img = get_object_or_404(Trap_Image, pk=pk)
 
-    return render(request, 'classifier/image_detail.html', {'img': img})
+    return render(request, 'classifier/image/image_detail.html', {'img': img})
