@@ -1,8 +1,5 @@
 {% extends "classifier/base.html" %}
-{% load static %}
-
 {% block title %}Data {{ data.id }} - Classifier{% endblock %}
-{% block aditional %} <script type="text/javascript" src="{% static 'js/loadImage.js' %}"></script> {% endblock %}
 
 {% block content %}
 <div class="col-md-10 offset-md-1">
@@ -26,14 +23,14 @@
       </tr>
     </thead>
     <tbody>
-          <tr>
-            <th scope="row">{{ data.id }}</th>
-            <td>{{ data.value }}</td>
-            <td>{{ data.variable }}</td>
-            <td>{{ data.cordX }}, {{ d.cordY }}</td>
-            <td>{{ data.image.id }}</td>
-            <td>{{ data.insect }}</td>
-          </tr>
+      <tr>
+        <th scope="row">{{ data.id }}</th>
+        <td>{{ data.value }}</td>
+        <td>{{ data.variable }}</td>
+        <td>{{ data.cordX }}, {{ d.cordY }}</td>
+        <td>{{ data.image.id }}</td>
+        <td>{{ data.insect }}</td>
+      </tr>
     </tbody>
   </table>
 </div>

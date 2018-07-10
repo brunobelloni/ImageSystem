@@ -6,7 +6,6 @@ class ImageForm(forms.ModelForm):
         model = Trap_Image
         fields = ('trap','image')
 
-
 class InsectForm(forms.ModelForm):
     class Meta():
         model = Insect
