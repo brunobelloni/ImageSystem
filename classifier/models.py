@@ -51,7 +51,7 @@ class Trap_Image_Data(models.Model):
     cordY = models.IntegerField()
 
     def __str__(self):
-        return self.description
+        return str(self.id)
 
     class Meta():
         verbose_name = 'Insect_Data'

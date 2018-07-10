@@ -1,12 +1,17 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
-from .models import Trap_Image, Trap, Insect, Variable
 from django.contrib.auth.decorators import login_required
-from .forms import ImageForm, InsectForm, TrapForm, VariableForm
+from .models import Trap_Image, Trap, Insect, Variable, Trap_Image_Data
+from .forms import ImageForm, InsectForm, TrapForm, VariableForm, DataForm
 
 @login_required
 def index(request):
     return render(request, 'classifier/index.html')
+
+
+##########################
+## Functions to Insects ##
+##########################
 
 @login_required
 def insects(request):
@@ -49,6 +54,11 @@ def insect_edit(request, pk):
     else:
         form = InsectForm(instance=insect)
     return render(request, 'classifier/insect/edit.html', {'form': form, 'insect': insect})
+
+
+#########################
+## Functions to Images ##
+#########################
 
 @login_required
 def images(request):
@@ -95,6 +105,10 @@ def image_edit(request, pk):
 
     return render(request, 'classifier/image/edit.html', {'img': img, 'form': form, 'traps': traps})
 
+########################
+## Functions to Traps ##
+########################
+
 @login_required
 def traps(request):
     traps = Trap.objects.all()
@@ -136,6 +150,10 @@ def trap_edit(request, pk):
         form = TrapForm(instance=trap)
     return render(request, 'classifier/trap/edit.html', {'form': form, 'trap': trap})
 
+############################
+## Functions to Variables ##
+############################
+
 @login_required
 def variables(request):
     variables = Variable.objects.all()
@@ -176,3 +194,48 @@ def variable_edit(request, pk):
     else:
         form = TrapForm(instance=variable)
     return render(request, 'classifier/variable/edit.html', {'form': form, 'variable': variable})
+
+#######################
+## Functions to Data ##
+#######################
+
+@login_required
+def view_data(request):
+    data = Trap_Image_Data.objects.all()
+    return render(request, 'classifier/data/main.html', {'data': data})
+
+@login_required
+def data_new(request):
+    if request.method == "POST":
+        form = DataForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('data')
+    else:
+        form = DataForm()
+
+    return render(request, 'classifier/data/new.html', {'form': form})
+
+@login_required
+def data_delete(request, pk):
+    data = Trap_Image_Data.objects.get(id=pk)
+    data.delete()
+    return redirect('data')
+
+@login_required
+def data_detail(request, pk):
+    data = Trap_Image_Data.objects.get(id=pk)
+    return render(request, 'classifier/data/detail.html', {'data': data})
+
+@login_required
+def data_edit(request, pk):
+    data = Trap_Image_Data.objects.get(id=pk)
+
+    if request.method == "POST":
+        form = DataForm(request.POST, instance=data)
+        if form.is_valid():
+            form.save()
+            return redirect('data')
+    else:
+        form = DataForm(instance=data)
+    return render(request, 'classifier/data/edit.html', {'form': form, 'data': data})

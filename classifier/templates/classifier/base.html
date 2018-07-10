@@ -21,10 +21,11 @@
 
       <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav mr-auto">
-          <li {% if request.path == "/classifier/images/" %} class="active" {% endif %}><a class="nav-link" href="{% url 'images' %}">Images</a></li>
-          <li {% if request.path == "/classifier/insects/" %} class="active" {% endif %}><a class="nav-link" href="{% url 'insects' %}">Insects</a></li>
-          <li {% if request.path == "/classifier/traps/" %} class="active" {% endif %}><a class="nav-link" href="{% url 'traps' %}">Traps</a></li>
-          <li {% if request.path == "/classifier/variables/" %} class="active" {% endif %}><a class="nav-link" href="{% url 'variables' %}">Variables</a></li>
+          <li {% if "images" in request.path %} class="active" {% endif %}><a class="nav-link" href="{% url 'images' %}">Images</a></li>
+          <li {% if "insects" in request.path %} class="active" {% endif %}><a class="nav-link" href="{% url 'insects' %}">Insects</a></li>
+          <li {% if "traps" in request.path %} class="active" {% endif %}><a class="nav-link" href="{% url 'traps' %}">Traps</a></li>
+          <li {% if "variables" in request.path %} class="active" {% endif %}><a class="nav-link" href="{% url 'variables' %}">Variables</a></li>
+          <li {% if "data" in request.path %} class="active" {% endif %}><a class="nav-link" href="{% url 'data' %}">Data</a></li>
         </ul>
 
         <ul class="navbar-nav">
