@@ -21,12 +21,11 @@
     <div class="form-group">
       <select name="trap" class="custom-select " required id="id_trap">
         {% if traps %}
-        <option value="" selected>Choose a Trap</option>
-        {% for trap in traps %}
-        <option value="{{ trap.id }}">{{ trap.description }}</option>
-        {% endfor %}
+          {% for trap in traps %}
+            <option {% if trap.id == img.trap.id %} selected {% endif %} value="{{ trap.id }}">{{ trap.description }}</option>
+          {% endfor %}
         {% else %}
-        <option value="" selected>No trap registered</option>
+          <option value="" selected>No trap registered</option>
         {% endif %}
       </select>
     </div>
