@@ -1,0 +1,40 @@
+{% extends "classifier/base.html" %}
+{% load static %}
+
+{% block title %}Data {{ data.id }} - Classifier{% endblock %}
+{% block aditional %} <script type="text/javascript" src="{% static 'js/loadImage.js' %}"></script> {% endblock %}
+
+{% block content %}
+<div class="col-md-10 offset-md-1">
+  <h1>Data {{ data.id }}</h1>
+
+  <div class="form-group float-right">
+    <a href="{% url 'data_edit' pk=data.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'data' %}" class="btn btn-danger">Back</a>
+    <a href="{% url 'data_delete' pk=data.id %}" class="btn btn-danger">Delete</a>
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Value</th>
+        <th scope="col">Variable</th>
+        <th scope="col">X, Y</th>
+        <th scope="col">Image</th>
+        <th scope="col">Insect</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <th scope="row">{{ data.id }}</th>
+            <td>{{ data.value }}</td>
+            <td>{{ data.variable }}</td>
+            <td>{{ data.cordX }}, {{ d.cordY }}</td>
+            <td>{{ data.image.id }}</td>
+            <td>{{ data.insect }}</td>
+          </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

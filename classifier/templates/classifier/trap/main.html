@@ -1,15 +1,14 @@
 {% extends "classifier/base.html" %}
-{% block title %} Images - Classifier {% endblock %}
+{% block title %}Traps - Classifier{% endblock %}
 
 {% block content %}
-<div class="row">
-  <h1 class="offset-1">Traps</h1>
-  <div style="position: absolute; left: 80%;" class="">
+<div class="col-md-10 offset-md-1">
+  <h1>Traps</h1>
+
+  <div class="form-group float-right">
     <a href="{% url 'trap_new' %}" class="btn btn-success">New Trap</a>
   </div>
-</div>
 
-<div class="col-md-10 offset-md-1">
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -29,5 +28,4 @@
     </tbody>
   </table>
 </div>
-
 {% endblock %}

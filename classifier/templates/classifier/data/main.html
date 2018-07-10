@@ -1,0 +1,39 @@
+{% extends "classifier/base.html" %}
+{% block title %}Data - Classifier{% endblock %}
+
+{% block content %}
+<div class="col-md-10 offset-md-1">
+  <h1>Data</h1>
+
+  <div class="form-group float-right">
+    <a href="{% url 'data_new' %}" class="btn btn-success">New Data</a>
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Value</th>
+        <th scope="col">Variable</th>
+        <th scope="col">X, Y</th>
+        <th scope="col">Image</th>
+        <th scope="col">Insect</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if data %}
+        {% for d in data %}
+          <tr onclick="window.location='{% url 'data_detail' pk=d.id %}';">
+            <th scope="row">{{ d.id }}</th>
+            <td>{{ d.value }}</td>
+            <td>{{ d.variable }}</td>
+            <td>{{ d.cordX }}, {{ d.cordY }}</td>
+            <td>{{ d.image.id }}</td>
+            <td>{{ d.insect }}</td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

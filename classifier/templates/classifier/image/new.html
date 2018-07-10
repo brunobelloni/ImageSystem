@@ -1,17 +1,17 @@
 {% extends "classifier/base.html" %}
 {% load static %}
-{% block title %} New Image - Classifier {% endblock %}
+
+{% block title %}New Image - Classifier{% endblock %}
 {% block aditional %} <script type="text/javascript" src="{% static 'js/loadImage.js' %}"></script> {% endblock %}
 
 {% block content %}
-<div class="row">
-  <h1 class="offset-1">New Image</h1>
-  <div style="position: absolute; left: 80%;" class="">
+<div class="col-md-10 offset-md-1">
+  <h1>New Image</h1>
+
+  <div class="form-group float-right">
     <a href="{% url 'images' %}" class="btn btn-danger">Back</a>
   </div>
-</div>
 
-<div class="col-md-8 offset-md-2">
   <form style="margin-top: 20px;" method="POST" class="post-form">
     {% csrf_token %}
 
@@ -32,6 +32,9 @@
       <div class="custom-file">
         <input type="file" class="custom-file-input" id="fileinput" accept="image/gif, image/jpeg, image/png" required onchange="readURL(this);" />
         <label class="custom-file-label" id="labelText" for="customFile">Choose an Image</label>
+        <div class="col-md-8 offset-md-2">
+          <img id="id_src" style="height: 350px; width: 100%; object-fit: cover; margin-top: 10px; margin-bottom: 360px;" class="img-fluid">
+        </div>
         <p><textarea name="image" style="display:none;" class="form-control-" required id="id_image"></textarea></p>
       </div>
     </div>

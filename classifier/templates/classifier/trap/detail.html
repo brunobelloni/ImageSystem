@@ -1,16 +1,16 @@
 {% extends "classifier/base.html" %}
-{% block title %} New Image - Classifier {% endblock %}
+{% block title %}Trap {{ trap.id }} - Classifier{% endblock %}
 
 {% block content %}
-<div class="row">
-  <h1 class="offset-1">Trap {{ trap.id }}</h1>
-  <div style="position: absolute; left: 80%;" class="">
-    <a href="{% url 'trap_delete' pk=trap.id %}" class="btn btn-danger">Delete</a>
-    <a href="{% url 'traps' %}" class="btn btn-danger">Back</a>
-  </div>
-</div>
-
 <div class="col-md-10 offset-md-1">
+  <h1>Trap {{ trap.id }}</h1>
+
+  <div class="form-group float-right">
+    <a href="{% url 'trap_edit' pk=trap.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'traps' %}" class="btn btn-danger">Back</a>
+    <a href="{% url 'trap_delete' pk=trap.id %}" class="btn btn-danger">Delete</a>
+  </div>
+
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -26,5 +26,4 @@
     </tbody>
   </table>
 </div>
-
 {% endblock %}
