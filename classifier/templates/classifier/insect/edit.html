@@ -1,12 +1,12 @@
 {% extends "classifier/base.html" %}
-{% block title %} Insects - Classifier {% endblock %}
+{% block title %} Editing Insect {{ insect.id }} - Classifier {% endblock %}
 
 {% block content %}
 <div class="col-md-10 offset-md-1">
-  <h1>Editing insect {{ insect.id }}</h1>
+  <h1>Editing Insect {{ insect.id }}</h1>
 
   <div class="form-group float-right">
-    <a href="{% url 'insects' %}" class="btn btn-danger">Back</a>
+    <a href="{% url 'insect_detail' pk=insect.id %}" class="btn btn-danger">Back</a>
   </div>
 
   <form style="margin-top: 20px;" method="POST" class="post-form">

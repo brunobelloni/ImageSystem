@@ -1,18 +1,15 @@
 {% extends "classifier/base.html" %}
 {% load static %}
 
-{% block title %} New Image - Classifier {% endblock %}
+{% block title %} Editing Image {{ img.id }} - Classifier {% endblock %}
 {% block aditional %} <script type="text/javascript" src="{% static 'js/loadImage.js' %}"></script> {% endblock %}
 
 {% block content %}
-<div class="row">
-</div>
-
 <div class="col-md-10 offset-md-1">
-  <h1>Editing image {{ img.id }}</h1>
+  <h1>Editing Image {{ img.id }}</h1>
 
   <div class="form-group float-right">
-    <a href="{% url 'images' %}" class="btn btn-danger">Back</a>
+    <a href="{% url 'image_detail' pk=img.pk %}" class="btn btn-danger">Back</a>
   </div>
 
   <form style="margin-top: 20px;" method="POST" class="post-form">

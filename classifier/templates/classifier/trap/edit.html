@@ -1,12 +1,12 @@
 {% extends "classifier/base.html" %}
-{% block title %} New Image - Classifier {% endblock %}
+{% block title %} Editing Trap {{ trap.id }} - Classifier {% endblock %}
 
 {% block content %}
 <div class="col-md-10 offset-md-1">
-  <h1>Editing trap {{ trap.id }}</h1>
+  <h1>Editing Trap {{ trap.id }}</h1>
 
   <div class="form-group float-right">
-    <a href="{% url 'traps' %}" class="btn btn-danger">Back</a>
+    <a href="{% url 'trap_detail' pk=trap.id %}" class="btn btn-danger">Back</a>
   </div>
 
   <form style="margin-top: 20px;" method="POST" class="post-form">
