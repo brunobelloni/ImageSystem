@@ -25,7 +25,7 @@
     {% if display_img %}
     {% for img in display_img %}
     <div class="col-md-6">
-      <div style="margin: 15px;" class="card mb-6">
+      <div style="margin: 20px;" class="card mb-6">
         <a href="{% url 'image_detail' pk=img.id %}"><img style="height: 350px; width: 100%; object-fit: cover;" class="card-img-top zoom" src="{{ img.image }}" alt="Card image cap"></a>
       </div>
     </div>

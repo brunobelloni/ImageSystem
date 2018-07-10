@@ -35,8 +35,8 @@
       <div class="custom-file">
         <input type="file" class="custom-file-input" id="fileinput" accept="image/gif, image/jpeg, image/png" required onchange="readURL(this);" />
         <label class="custom-file-label" id="labelText" for="customFile">Choose an Image</label>
-        <div class="col-md-10 offset-md-1">
-          <img id="id_src" class="img-fluid">
+        <div class="col-md-8 offset-md-2">
+          <img id="id_src" style="height: 350px; width: 100%; object-fit: cover; margin-top: 10px; margin-bottom: 360px;" class="img-fluid">
         </div>
         <p><textarea name="image" style="display:none;" class="form-control-" required id="id_image"></textarea></p>
       </div>

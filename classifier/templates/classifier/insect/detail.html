@@ -6,6 +6,7 @@
   <h1>Insect {{ insect.id }}</h1>
 
   <div class="form-group float-right">
+    <a href="{% url 'insect_edit' pk=insect.id %}" class="btn btn-primary">Edit</a>
     <a href="{% url 'insects' %}" class="btn btn-danger">Back</a>
     <a href="{% url 'insect_delete' pk=insect.id %}" class="btn btn-danger">Delete</a>
   </div>

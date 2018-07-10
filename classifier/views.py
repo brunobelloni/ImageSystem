@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Trap_Image, Trap, Insect
 from .forms import ImageForm, InsectForm, TrapForm
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 
 @login_required
 def index(request):
@@ -35,6 +36,19 @@ def insect_detail(request, pk):
     insect = Insect.objects.get(id=pk)
 
     return render(request, 'classifier/insect/detail.html', {'insect': insect})
+
+@login_required
+def insect_edit(request, pk):
+    insect = Insect.objects.get(id=pk)
+
+    if request.method == "POST":
+        form = InsectForm(request.POST, instance=insect)
+        if form.is_valid():
+            form.save()
+            return redirect('insects')
+    else:
+        form = InsectForm(instance=insect)
+    return render(request, 'classifier/insect/edit.html', {'form': form, 'insect': insect})
 
 @login_required
 def images(request):
@@ -73,12 +87,11 @@ def image_edit(request, pk):
         form = ImageForm(request.POST, instance=img)
         if form.is_valid():
             form = form.save(commit=False)
+            form.date = datetime.now()
             form.save()
             return redirect('images')
     else:
         form = ImageForm(instance=img)
-        print(img.id)
-        print(img.trap)
 
     return render(request, 'classifier/image/edit.html', {'img': img, 'form': form, 'traps': traps})
 
@@ -109,3 +122,16 @@ def trap_delete(request, pk):
 def trap_detail(request, pk):
     trap = Trap.objects.get(id=pk)
     return render(request, 'classifier/trap/detail.html', {'trap': trap})
+
+@login_required
+def trap_edit(request, pk):
+    trap = Trap.objects.get(id=pk)
+
+    if request.method == "POST":
+        form = TrapForm(request.POST, instance=trap)
+        if form.is_valid():
+            form.save()
+            return redirect('traps')
+    else:
+        form = TrapForm(instance=trap)
+    return render(request, 'classifier/trap/edit.html', {'form': form, 'trap': trap})
