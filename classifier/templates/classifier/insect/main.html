@@ -2,15 +2,13 @@
 {% block title %} Insects - Classifier {% endblock %}
 
 {% block content %}
+<div class="col-md-10 offset-md-1">
+  <h1>Insects</h1>
 
-<div class="row">
-  <h1 class="offset-1">Insects</h1>
-  <div style="position: absolute; left: 80%;" class="">
+  <div class="form-group float-right">
     <a href="{% url 'insect_new' %}" class="btn btn-success">New Insect</a>
   </div>
-</div>
 
-<div class="col-md-10 offset-md-1">
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -30,6 +28,4 @@
     </tbody>
   </table>
 </div>
-
-
 {% endblock %}

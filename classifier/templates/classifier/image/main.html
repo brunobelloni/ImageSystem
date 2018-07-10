@@ -13,18 +13,16 @@
 </style>
 {% endblock %}
 
-
 {% block content %}
+<div class="col-md-10 offset-md-1">
+  <h1>Images</h1>
 
-<div class="row">
-  <h1 class="offset-1">Images</h1>
-  <div style="position: absolute; left: 80%;" class="">
+  <div class="form-group float-right">
     <a href="{% url 'image_new' %}" class="btn btn-success">New Image</a>
   </div>
-</div>
 
-<div style="margin-top: 20px;" class="row">
-  {% if display_img %}
+  <div style="margin-top: 70px;" class="row">
+    {% if display_img %}
     {% for img in display_img %}
     <div class="col-md-6">
       <div style="margin: 15px;" class="card mb-6">
@@ -32,7 +30,7 @@
       </div>
     </div>
     {% endfor %}
-  {% endif %}
+    {% endif %}
+  </div>
 </div>
-
 {% endblock %}
