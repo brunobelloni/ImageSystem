@@ -20,4 +20,10 @@ urlpatterns = [
     path('traps/<int:pk>/', views.trap_detail, name='trap_detail'),
     path('traps/edit/<int:pk>/', views.trap_edit, name='trap_edit'),
     path('traps/delete/<int:pk>/', views.trap_delete, name='trap_delete'),
+
+    path('variables/', views.variables, name='variables'),
+    path('variables/new/', views.variable_new, name='variable_new'),
+    path('variables/<int:pk>/', views.variable_detail, name='variable_detail'),
+    path('variables/edit/<int:pk>/', views.variable_edit, name='variable_edit'),
+    path('variables/delete/<int:pk>/', views.variable_delete, name='variable_delete'),
 ]

@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
-from .models import Trap_Image, Trap, Insect
-from .forms import ImageForm, InsectForm, TrapForm
-from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from django.shortcuts import render, redirect
+from .models import Trap_Image, Trap, Insect, Variable
+from django.contrib.auth.decorators import login_required
+from .forms import ImageForm, InsectForm, TrapForm, VariableForm
 
 @login_required
 def index(request):
@@ -135,3 +135,44 @@ def trap_edit(request, pk):
     else:
         form = TrapForm(instance=trap)
     return render(request, 'classifier/trap/edit.html', {'form': form, 'trap': trap})
+
+@login_required
+def variables(request):
+    variables = Variable.objects.all()
+    return render(request, 'classifier/variable/main.html', {'variables': variables})
+
+@login_required
+def variable_new(request):
+    if request.method == "POST":
+        form = VariableForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('variables')
+    else:
+        form = VariableForm()
+
+    return render(request, 'classifier/variable/new.html', {'form': form})
+
+@login_required
+def variable_delete(request, pk):
+    variable = Variable.objects.get(id=pk)
+    variable.delete()
+    return redirect('variables')
+
+@login_required
+def variable_detail(request, pk):
+    variable = Variable.objects.get(id=pk)
+    return render(request, 'classifier/variable/detail.html', {'variable': variable})
+
+@login_required
+def variable_edit(request, pk):
+    variable = Variable.objects.get(id=pk)
+
+    if request.method == "POST":
+        form = TrapForm(request.POST, instance=variable)
+        if form.is_valid():
+            form.save()
+            return redirect('variables')
+    else:
+        form = TrapForm(instance=variable)
+    return render(request, 'classifier/variable/edit.html', {'form': form, 'variable': variable})

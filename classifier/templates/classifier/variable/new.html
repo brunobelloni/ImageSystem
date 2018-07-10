@@ -1,0 +1,23 @@
+{% extends "classifier/base.html" %}
+{% block title %}New Variable - Classifier{% endblock %}
+
+{% block content %}
+<div class="col-md-10 offset-md-1">
+  <h1>New Variable</h1>
+
+  <div class="form-group float-right">
+    <a href="{% url 'variables' %}" class="btn btn-danger">Back</a>
+  </div>
+
+  <form style="margin-top: 20px;" method="POST" class="post-form">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="formGroupExampleInput">Description</label>
+      <input type="text" name="description" class="form-control" id="id_description" required placeholder="Variable description">
+    </div>
+
+    <button type="submit" class="save btn btn-success float-right">Save</button>
+  </form>
+</div>
+{% endblock %}
