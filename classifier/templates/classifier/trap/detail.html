@@ -6,8 +6,8 @@
   <h1>Trap {{ trap.id }}</h1>
 
   <div class="form-group float-right">
-    <a href="{% url 'trap_delete' pk=trap.id %}" class="btn btn-danger">Delete</a>
     <a href="{% url 'traps' %}" class="btn btn-danger">Back</a>
+    <a href="{% url 'trap_delete' pk=trap.id %}" class="btn btn-danger">Delete</a>
   </div>
 
   <table class="table table-striped table-hover">
