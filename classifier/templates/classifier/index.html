@@ -3,6 +3,35 @@
 
 {% block content %}
 <div class="col-md-10 offset-md-1">
-  <h1>you are at index</h1>
+  <h1>Unclassified Data - {{ quantity }}</h1>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Value</th>
+        <th scope="col">Variable</th>
+        <th scope="col">X, Y</th>
+        <th scope="col">Image</th>
+        <th scope="col">Insect</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if unclassified_data %}
+        {% for data in unclassified_data %}
+          <tr>
+            <th scope="row">{{ data.id }}</th>
+            <td>{{ data.value }}</td>
+            <td>{{ data.variable }}</td>
+            <td>{{ data.cordX }}, {{ data.cordY }}</td>
+            <td>{{ data.image.id }}</td>
+            <td style="color: red;">{{ data.insect }}</td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+
+
 </div>
 {% endblock %}

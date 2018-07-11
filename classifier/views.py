@@ -4,9 +4,37 @@ from django.contrib.auth.decorators import login_required
 from .models import Trap_Image, Trap, Insect, Variable, Trap_Image_Data
 from .forms import ImageForm, InsectForm, TrapForm, VariableForm, DataForm
 
+from io import StringIO
+import PIL.Image
+
+def encode_img(img_fn):
+    with open(img_fn, 'rb') as f:
+        data = f.read()
+        return data.encode('base64')
+
+def decode_img(img_base64):
+    # decode_str = img_base64.decode('base64')
+    file_like = StringIO(img_base64)
+    img = PIL.Image.open(file_like)
+    rgb_img = img.convert('RGB')
+    return rgb_img
+
+def recort(xA, yA, imagem, rA=10, margin=25):
+    y, y1 = int(yA) - int(rA + margin), int(yA) + int(rA + margin)
+    x, x1 = int(xA) - int(rA + margin), int(xA) + int(rA + margin)
+    return imagem[y:y1, x:x1]
+
 @login_required
 def index(request):
-    return render(request, 'classifier/index.html')
+    unclassified_data = Trap_Image_Data.objects.filter(insect=None)[:1]
+    quantity = len(Trap_Image_Data.objects.filter(insect=None))
+
+    # img = unclassified_data[0].image.image
+    #
+    # decode_img(img)
+    img = 0
+
+    return render(request, 'classifier/index.html', {'unclassified_data': unclassified_data, 'quantity': quantity, 'img': img})
 
 
 ##########################
