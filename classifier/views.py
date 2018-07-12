@@ -7,12 +7,13 @@ from .decoder_and_encoder import getCropImg
 
 @login_required
 def index(request):
-    unclassified_data = Trap_Image_Data.objects.filter(insect=None)[:1]
+    unclassified_data = Trap_Image_Data.objects.filter(insect=None)
     quantity = len(Trap_Image_Data.objects.filter(insect=None))
-    b64 = unclassified_data[0].image.image
-    x = unclassified_data[0].cordX
-    y = unclassified_data[0].cordY
-    img = getCropImg(b64=b64, x=50, y=50)
+
+    first = unclassified_data[0]
+    b64 = first.image.image
+    x, y = first.cordX, first.cordY
+    img = getCropImg(b64=b64, x=500, y=500, margin=50)
 
     return render(request, 'classifier/index.html', {'unclassified_data': unclassified_data, 'quantity': quantity, 'img': img})
 
@@ -214,6 +215,10 @@ def view_data(request):
 
 @login_required
 def data_new(request):
+    images = Trap_Image.objects.all()
+    variables = Variable.objects.all()
+    insects = Insect.objects.all()
+
     if request.method == "POST":
         form = DataForm(request.POST)
         if form.is_valid():
@@ -222,7 +227,7 @@ def data_new(request):
     else:
         form = DataForm()
 
-    return render(request, 'classifier/data/new.html', {'form': form})
+    return render(request, 'classifier/data/new.html', {'form': form, 'images': images, 'variables': variables, 'insects': insects})
 
 @login_required
 def data_delete(request, pk):

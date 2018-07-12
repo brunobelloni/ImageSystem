@@ -9,9 +9,9 @@ def stringToImage(base64_string):
     elif ',' in base64_string:
         _, base64_string = base64_string.split(',')
     img = base64.b64decode(base64_string)
-    npimg = np.fromstring(img, dtype=np.uint8)
-    source = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
-    return source
+    np_img = np.fromstring(img, dtype=np.uint8)
+    image = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
+    return image
 
 def cropImage(image, x, y, margin=None):
     ''' Crop image '''
