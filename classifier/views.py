@@ -1,9 +1,9 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
+from .opencv_library import get_cropped_img, get_data_img
 from django.contrib.auth.decorators import login_required
 from .models import Trap_Image, Trap, Insect, Variable, Trap_Image_Data
 from .forms import ImageForm, InsectForm, TrapForm, VariableForm, DataForm
-from .decoder_and_encoder import getCropImg
 
 @login_required
 def index(request):
@@ -13,7 +13,7 @@ def index(request):
     first = unclassified_data[0]
     b64 = first.image.image
     x, y = first.cordX, first.cordY
-    img = getCropImg(b64=b64, x=500, y=500, margin=50)
+    img = get_cropped_img(b64=b64, x=500, y=500, margin=50)
 
     return render(request, 'classifier/index.html', {'unclassified_data': unclassified_data, 'quantity': quantity, 'img': img})
 
@@ -87,6 +87,27 @@ def image_new(request):
         form = ImageForm()
 
     return render(request, 'classifier/image/new.html', {'form': form, 'traps': traps})
+
+@login_required
+def image_new_data(request):
+        traps = Trap.objects.all()
+
+        if request.method == "POST":
+            form = ImageForm(request.POST)
+            if form.is_valid():
+                img = form['image'].value()
+                id = form.save()
+                v_id = Variable.objects.get(id=1)
+                x_points, y_points, predict = get_data_img(img)
+
+                for i in range(len(predict)):
+                    Trap_Image_Data.objects.create(image=id, variable=v_id, value=predict['area'][i], cordX=x_points[i], cordY=y_points[i])
+
+                return redirect('images')
+        else:
+            form = ImageForm()
+
+        return render(request, 'classifier/image/new.html', {'form': form, 'traps': traps})
 
 @login_required
 def image_delete(request, pk):
