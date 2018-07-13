@@ -1,8 +1,8 @@
 # backendClassifier
-## Site para classificação manual de insetos utilizando django
+## Site para classificação manual de insetos utilizando django 2.x
 
 Requirements:
-> pip install django==2.0.6 </br>
+> pip install django </br>
 > pip install opencv-python</br>
 > pip install numpy</br>
 > pip install base64</br>
