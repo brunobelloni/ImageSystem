@@ -15,7 +15,7 @@ def stringToImage(base64_string):
 
 def cropImage(image, x, y, margin=None):
     ''' Crop image '''
-    if(margin == None): margin = 25
+    if margin == None: margin = 25
     y1, y2 = y - margin, y + margin
     x1, x2 = x - margin, x + margin
     return image[y1:y2, x1:x2]
