@@ -10,10 +10,13 @@ def index(request):
     unclassified_data = Trap_Image_Data.objects.filter(insect=None)
     quantity = len(Trap_Image_Data.objects.filter(insect=None))
 
-    first = unclassified_data[0]
-    b64 = first.image.image
-    x, y = first.cordX, first.cordY
-    img = get_cropped_img(b64=b64, x=500, y=500, margin=50)
+    try:
+        first = unclassified_data[0]
+        b64 = first.image.image
+        x, y = first.cordX, first.cordY
+        img = get_cropped_img(b64=b64, x=500, y=500, margin=50)
+    except Exception as e:
+        img = None
 
     return render(request, 'classifier/index.html', {'unclassified_data': unclassified_data, 'quantity': quantity, 'img': img})
 

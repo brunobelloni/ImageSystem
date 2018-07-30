@@ -9,7 +9,9 @@
     Unclassified Data <span class="badge badge-light">{{ quantity }}</span>
   </button>
 
-  <img class="rounded" src="{{ img }}" alt="">
+  {% if img %}
+    <img class="rounded" src="{{ img }}" alt="">
+  {% endif %}
 
   <table class="table table-striped table-hover">
     <thead>
