@@ -7,7 +7,7 @@ from .forms import ImageForm, InsectForm, TrapForm, VariableForm, DataForm
 
 @login_required
 def index(request):
-    unclassified_data = Trap_Image_Data.objects.filter(insect=None)
+    unclassified_data = Trap_Image_Data.objects.filter(insect=None)[:5]
     quantity = len(Trap_Image_Data.objects.filter(insect=None))
 
     try:
@@ -101,11 +101,15 @@ def image_new_data(request):
                 img = form['image'].value()
                 id = form.save()
                 v_id = Variable.objects.get(id=1)
-                x_points, y_points, predict = get_data_img(img)
+                x_points, y_points, predicts = get_data_img(img)
 
-                for i in range(len(predict)):
-                    Trap_Image_Data.objects.create(image=id, variable=v_id, value=predict['area'][i], cordX=x_points[i], cordY=y_points[i])
+                for predict in predicts['area']:
+                    index = predicts['area'].index(predict)
+                    Trap_Image_Data.objects.create(image=id, variable=v_id, value=predict, cordX=x_points[index], cordY=y_points[index])
 
+                    # if 'area' in predict:
+                    #     print(type(predicts[predict]))
+                    #     # Trap_Image_Data.objects.create(image=id, variable=v_id, value=predicts[predict], cordX=0, cordY=0)
                 return redirect('images')
         else:
             form = ImageForm()

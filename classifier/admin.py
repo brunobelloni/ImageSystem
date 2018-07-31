@@ -3,8 +3,11 @@ from .models import (Trap, Trap_Image,
                      Insect, Variable,
                      Trap_Image_Data,)
 
+class Data(admin.ModelAdmin):
+    search_fields = ('id',)
+
 admin.site.register(Trap)
 admin.site.register(Insect)
 admin.site.register(Variable)
 admin.site.register(Trap_Image)
-admin.site.register(Trap_Image_Data)
+admin.site.register(Trap_Image_Data, Data)
