@@ -14,7 +14,7 @@ def index(request):
         first = unclassified_data[0]
         b64 = first.image.image
         x, y = first.cordX, first.cordY
-        img = get_cropped_img(b64=b64, x=500, y=500, margin=50)
+        img = get_cropped_img(b64=b64, x=x, y=y, margin=100)
     except Exception as e:
         img = None
 
