@@ -17,7 +17,7 @@ def index(request):
         img = get_cropped_img(b64=b64, x=x, y=y, margin=50)
     except Exception as e:
         img = None
-
+        
     return render(request, 'classifier/index.html', {'unclassified_data': unclassified_data, 'quantity': quantity, 'img': img})
 
 
