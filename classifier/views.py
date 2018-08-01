@@ -1,20 +1,20 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
-from .opencv_library import get_cropped_img, get_data_img
+from .opencv_library import get_cropped_img, set_data_img
 from django.contrib.auth.decorators import login_required
 from .models import Trap_Image, Trap, Insect, Variable, Trap_Image_Data
 from .forms import ImageForm, InsectForm, TrapForm, VariableForm, DataForm
 
 @login_required
 def index(request):
-    unclassified_data = Trap_Image_Data.objects.filter(insect=None)[:5]
+    unclassified_data = Trap_Image_Data.objects.filter(insect=None)[:10]
     quantity = len(Trap_Image_Data.objects.filter(insect=None))
 
     try:
         first = unclassified_data[0]
         b64 = first.image.image
         x, y = first.cordX, first.cordY
-        img = get_cropped_img(b64=b64, x=x, y=y, margin=100)
+        img = get_cropped_img(b64=b64, x=x, y=y, margin=50)
     except Exception as e:
         img = None
 
@@ -100,16 +100,8 @@ def image_new_data(request):
             if form.is_valid():
                 img = form['image'].value()
                 id = form.save()
-                v_id = Variable.objects.get(id=1)
-                x_points, y_points, predicts = get_data_img(img)
-
-                for predict in predicts['area']:
-                    index = predicts['area'].index(predict)
-                    Trap_Image_Data.objects.create(image=id, variable=v_id, value=predict, cordX=x_points[index], cordY=y_points[index])
-
-                    # if 'area' in predict:
-                    #     print(type(predicts[predict]))
-                    #     # Trap_Image_Data.objects.create(image=id, variable=v_id, value=predicts[predict], cordX=0, cordY=0)
+                redirect('images')
+                set_data_img(img, id)
                 return redirect('images')
         else:
             form = ImageForm()
@@ -238,7 +230,7 @@ def variable_edit(request, pk):
 
 @login_required
 def view_data(request):
-    data = Trap_Image_Data.objects.all()
+    data = Trap_Image_Data.objects.all()[:20]
     return render(request, 'classifier/data/main.html', {'data': data})
 
 @login_required

@@ -1,6 +1,7 @@
 import cv2
 import base64
 import numpy as np
+from .models import Variable, Trap_Image_Data
 
 def b64_2_img(b64):
     # NOTE: Converte imagem em base64 para imagem numpy
@@ -79,16 +80,17 @@ def get_dist_ab(xC, xA, yC, yA):
     # NOTE: Retorna a distancia entre o afideo e o centro da placa de petri
     return np.sqrt(((xC - xA) ** 2) + ((yC - yA) ** 2))
 
-def get_data_img(b64):
+def set_data_img(b64, img_id):
     # NOTE: Seleciona insetos na imagem
     img = b64_2_img(b64)
-    img, x2, y2, r2 = cut_petri(img)
+    _, x2, y2, r2 = cut_petri(img)
     contours = get_contours(img)
 
-    predict = {'hu0': [], 'hu1': [], 'hu2': [], 'hu3': [], 'hu4': [], 'hu5': [], 'hu6': [], 'area': [], 'per': []}
-    contornos = []
-    x_points = []
-    y_points = []
+    variables = []
+    for v in Variable.objects.all():
+        variables.append(v)
+
+    v_area = Variable.objects.get(description='area')
 
     for contour in contours:
         area = cv2.contourArea(contour)
@@ -97,19 +99,20 @@ def get_data_img(b64):
             dist = get_dist_ab(x2, x, y2, y)
 
             if dist < r2 - 100:
-                x_points.append(x)
-                y_points.append(y)
                 per = cv2.arcLength(contour, True)
                 hu = cv2.HuMoments(cv2.moments(contour))
 
-                predict['hu0'].append(float(hu[0]))
-                predict['hu1'].append(float(hu[1]))
-                predict['hu2'].append(float(hu[2]))
-                predict['hu3'].append(float(hu[3]))
-                predict['hu4'].append(float(hu[4]))
-                predict['hu5'].append(float(hu[5]))
-                predict['hu6'].append(float(hu[6]))
-                predict['area'].append(area)
-                predict['per'].append(per)
-    img = img_2_b64(img)
-    return x_points, y_points, predict
+                for v in variables:
+                    desc = v.description.lower()
+                    if desc == 'area': value = area
+                    elif desc == 'perimeter': value = per
+                    elif desc == 'hu0': value = float(hu[0])
+                    elif desc == 'hu1': value = float(hu[1])
+                    elif desc == 'hu2': value = float(hu[2])
+                    elif desc == 'hu3': value = float(hu[3])
+                    elif desc == 'hu4': value = float(hu[4])
+                    elif desc == 'hu5': value = float(hu[5])
+                    elif desc == 'hu6': value = float(hu[6])
+                    else: continue
+                    Trap_Image_Data.objects.create(image=img_id, variable=v, value=value, cordX=x, cordY=y)
+    return True
