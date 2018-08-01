@@ -100,7 +100,6 @@ def image_new_data(request):
             if form.is_valid():
                 img = form['image'].value()
                 id = form.save()
-                redirect('images')
                 set_data_img(img, id)
                 return redirect('images')
         else:
@@ -263,6 +262,9 @@ def data_detail(request, pk):
 @login_required
 def data_edit(request, pk):
     data = Trap_Image_Data.objects.get(id=pk)
+    images = Trap_Image.objects.all()
+    variables = Variable.objects.all()
+    insects = Insect.objects.all()
 
     if request.method == "POST":
         form = DataForm(request.POST, instance=data)
@@ -271,4 +273,4 @@ def data_edit(request, pk):
             return redirect('data')
     else:
         form = DataForm(instance=data)
-    return render(request, 'classifier/data/edit.html', {'form': form, 'data': data})
+    return render(request, 'classifier/data/edit.html', {'form': form, 'data': data, 'images': images, 'variables': variables, 'insects': insects})
