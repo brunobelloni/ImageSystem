@@ -14,9 +14,9 @@
     <div class="form-group">
       <select name="image" class="custom-select " required id="id_image">
         {% if images %}
-        <option value="" selected>Choose an Image</option>
+          <option value="" selected>Choose an Image</option>
         {% for image in images %}
-        <option value="{{ image.id }}">{{ image.id }}</option>
+          <option value="{{ image.id }}">{{ image.id }}</option>
         {% endfor %}
         {% else %}
         <option value="" selected>No image registered</option>

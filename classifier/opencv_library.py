@@ -90,8 +90,6 @@ def set_data_img(b64, img_id):
     for v in Variable.objects.all():
         variables.append(v)
 
-    v_area = Variable.objects.get(description='area')
-
     for contour in contours:
         area = cv2.contourArea(contour)
         if 120 < area < 3500:
@@ -114,5 +112,6 @@ def set_data_img(b64, img_id):
                     elif desc == 'hu5': value = float(hu[5])
                     elif desc == 'hu6': value = float(hu[6])
                     else: continue
+                    print(hu)
                     Trap_Image_Data.objects.create(image=img_id, variable=v, value=value, cordX=x, cordY=y)
     return True

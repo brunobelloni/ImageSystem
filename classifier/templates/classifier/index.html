@@ -3,43 +3,24 @@
 
 {% block content %}
 <div class="col-md-10 offset-md-1">
-  <h1>Unclassified Data</h1>
 
-  <button type="button" class="btn btn-primary">
-    Unclassified Data <span class="badge badge-light">{{ quantity }}</span>
-  </button>
+  <div class="d-flex align-items-center justify-content-center h-100">
+    <h3>Currently there are <span class="badge badge-primary">{{ quantity }}</span> unclassified insects</h3>
+  </div>
 
   {% if img %}
+  <div class="d-flex align-items-center justify-content-center h-100">
     <img class="rounded" src="{{ img }}" alt="">
+  </div>
+
+  <div class="d-flex align-items-center justify-content-center h-100">
+    <div class="btn-group form-group">
+      <a href="#" class="btn btn-primary">Ninfa</a>
+      <a href="#" class="btn btn-primary">Aptero</a>
+      <a href="#" class="btn btn-primary">Alado</a>
+    </div>
+  </div>
   {% endif %}
-
-  <!-- <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Value</th>
-        <th scope="col">Variable</th>
-        <th scope="col">X, Y</th>
-        <th scope="col">Image</th>
-        <th scope="col">Insect</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if unclassified_data %}
-        {% for data in unclassified_data %}
-          <tr>
-            <th scope="row">{{ data.id }}</th>
-            <td>{{ data.value }}</td>
-            <td>{{ data.variable }}</td>
-            <td>{{ data.cordX }}, {{ data.cordY }}</td>
-            <td>{{ data.image.id }}</td>
-            <td style="color: red;">{{ data.insect }}</td>
-          </tr>
-        {% endfor %}
-      {% endif %}
-    </tbody>
-  </table> -->
-
 
 </div>
 {% endblock %}

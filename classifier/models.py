@@ -46,7 +46,7 @@ class Trap_Image_Data(models.Model):
     image = models.ForeignKey(Trap_Image, on_delete=models.CASCADE)
     variable = models.ForeignKey(Variable, on_delete=models.CASCADE)
     insect = models.ForeignKey(Insect, null=True, blank=True, on_delete=models.CASCADE)
-    value = models.DecimalField(max_digits=10, decimal_places=5)
+    value = models.FloatField()
     cordX = models.IntegerField()
     cordY = models.IntegerField()
 

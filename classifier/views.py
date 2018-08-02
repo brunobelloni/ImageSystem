@@ -8,7 +8,7 @@ from .forms import ImageForm, InsectForm, TrapForm, VariableForm, DataForm
 @login_required
 def index(request):
     unclassified_data = Trap_Image_Data.objects.filter(insect=None)[:10]
-    quantity = len(Trap_Image_Data.objects.filter(insect=None))
+    quantity = int(len(Trap_Image_Data.objects.filter(insect=None)) / len(Variable.objects.all()))
 
     try:
         first = unclassified_data[0]
@@ -17,7 +17,7 @@ def index(request):
         img = get_cropped_img(b64=b64, x=x, y=y, margin=50)
     except Exception as e:
         img = None
-        
+
     return render(request, 'classifier/index.html', {'unclassified_data': unclassified_data, 'quantity': quantity, 'img': img})
 
 
@@ -27,7 +27,7 @@ def index(request):
 
 @login_required
 def insects(request):
-    insec = Insect.objects.all()
+    insec = Insect.objects.order_by('id')
     return render(request, 'classifier/insect/main.html', {'insec': insec})
 
 @login_required
@@ -74,12 +74,12 @@ def insect_edit(request, pk):
 
 @login_required
 def images(request):
-    display_img = Trap_Image.objects.all()
+    display_img = Trap_Image.objects.order_by('id')
     return render(request, 'classifier/image/main.html', {'display_img': display_img})
 
 @login_required
 def image_new(request):
-    traps = Trap.objects.all()
+    traps = Trap.objects.order_by('id')
 
     if request.method == "POST":
         form = ImageForm(request.POST)
@@ -93,7 +93,7 @@ def image_new(request):
 
 @login_required
 def image_new_data(request):
-        traps = Trap.objects.all()
+        traps = Trap.objects.order_by('id')
 
         if request.method == "POST":
             form = ImageForm(request.POST)
@@ -119,7 +119,7 @@ def image_detail(request, pk):
 
 def image_edit(request, pk):
     img = Trap_Image.objects.get(id=pk)
-    traps = Trap.objects.all()
+    traps = Trap.objects.order_by('id')
 
     if request.method == "POST":
         form = ImageForm(request.POST, instance=img)
@@ -139,7 +139,7 @@ def image_edit(request, pk):
 
 @login_required
 def traps(request):
-    traps = Trap.objects.all()
+    traps = Trap.objects.order_by('id')
     return render(request, 'classifier/trap/main.html', {'traps': traps})
 
 @login_required
@@ -184,7 +184,7 @@ def trap_edit(request, pk):
 
 @login_required
 def variables(request):
-    variables = Variable.objects.all()
+    variables = Variable.objects.order_by('id')
     return render(request, 'classifier/variable/main.html', {'variables': variables})
 
 @login_required
@@ -229,14 +229,14 @@ def variable_edit(request, pk):
 
 @login_required
 def view_data(request):
-    data = Trap_Image_Data.objects.all()[:20]
+    data = Trap_Image_Data.objects.order_by('id')[:20]
     return render(request, 'classifier/data/main.html', {'data': data})
 
 @login_required
 def data_new(request):
-    images = Trap_Image.objects.all()
-    variables = Variable.objects.all()
-    insects = Insect.objects.all()
+    images = Trap_Image.objects.order_by('id')
+    variables = Variable.objects.order_by('id')
+    insects = Insect.objects.order_by('id')
 
     if request.method == "POST":
         form = DataForm(request.POST)
@@ -262,9 +262,9 @@ def data_detail(request, pk):
 @login_required
 def data_edit(request, pk):
     data = Trap_Image_Data.objects.get(id=pk)
-    images = Trap_Image.objects.all()
-    variables = Variable.objects.all()
-    insects = Insect.objects.all()
+    images = Trap_Image.objects.order_by('id')
+    variables = Variable.objects.order_by('id')
+    insects = Insect.objects.order_by('id')
 
     if request.method == "POST":
         form = DataForm(request.POST, instance=data)
