@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <title> {% block title %} {% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <link rel="shortcut icon" type="image/png" href="https://cdn2.iconfinder.com/data/icons/black-animal-svg-icons/512/insect_insert_bug_animal_ladybird-512.png"/>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'js/pooper.js' %}"></script>
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
   {% block aditional %} {% endblock %}
 </head>
 <body>
