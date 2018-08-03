@@ -20,6 +20,9 @@ def index(request):
 
     return render(request, 'classifier/index.html', {'unclassified_data': unclassified_data, 'quantity': quantity, 'img': img})
 
+def teste(request):
+    return render(request, 'teste.html')
+
 
 ##########################
 ## Functions to Insects ##
