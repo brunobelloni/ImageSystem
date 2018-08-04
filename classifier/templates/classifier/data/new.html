@@ -2,16 +2,16 @@
 {% block title %}New Data - Classifier{% endblock %}
 
 {% block content %}
-<div class="col-md-10 offset-md-1">
+<div>
   {% url 'data' as url %}
   {% include "inserts/header.html" with name='New Data' local=url%}
 
-  <form style="margin-top: 20px;" method="POST" class="post-form">
+  <form method="POST">
     {% csrf_token %}
-    <div class="form-group">
+    <div class="input-field">
       <select name="image" class="custom-select " required id="id_image">
         {% if images %}
-          <option value="" selected>Choose an Image</option>
+          <option value="" selected disabled>Choose an Image</option>
         {% for image in images %}
           <option value="{{ image.id }}">{{ image.id }}</option>
         {% endfor %}
@@ -19,11 +19,12 @@
         <option value="" selected>No image registered</option>
         {% endif %}
       </select>
+      <label>Image</label>
     </div>
-    <div class="form-group">
+    <div class="input-field">
       <select name="variable" class="custom-select " required id="id_variable">
         {% if variables %}
-        <option value="" selected>Choose a Variable</option>
+        <option value="" selected disabled>Choose a Variable</option>
         {% for variable in variables %}
         <option value="{{ variable.id }}">{{ variable.description }}</option>
         {% endfor %}
@@ -31,11 +32,12 @@
         <option value="" selected>No variable registered</option>
         {% endif %}
       </select>
+      <label>Variable</label>
     </div>
-    <div class="form-group">
+    <div class="input-field">
       <select name="insect" class="custom-select " id="id_insect">
         {% if insects %}
-        <option value="" selected>Choose an Insect</option>
+        <option value="" selected disabled>Choose an Insect</option>
         {% for insect in insects %}
         <option value="{{ insect.id }}">{{ insect.description }}</option>
         {% endfor %}
@@ -43,17 +45,21 @@
         <option value="" selected>No insect registered</option>
         {% endif %}
       </select>
+      <label>Insect</label>
     </div>
-    <div class="form-group">
-      <input type="number" name="value" class="form-control" id="id_value" step="0.00001" required placeholder="Value">
+    <div class="input-field">
+      <label>Value</label>
+      <input type="number" name="value" class="form-control" id="id_value" step="0.00001" required>
     </div>
-    <div class="form-group">
-      <input type="number" name="cordX" class="form-control" id="id_cordX" required placeholder="Point X">
+    <div class="input-field">
+      <label>Cord X</label>
+      <input type="number" name="cordX" class="form-control" id="id_cordX" required>
     </div>
-    <div class="form-group">
-      <input type="number" name="cordY" class="form-control" id="id_cordY" required placeholder="Point Y">
+    <div class="input-field">
+      <label>Cord Y</label>
+      <input type="number" name="cordY" class="form-control" id="id_cordY" required>
     </div>
-    <button type="submit" class="save btn btn-success float-right">Save</button>
+    <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button>
   </form>
 </div>
 {% endblock %}
