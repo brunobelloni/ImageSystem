@@ -3,11 +3,8 @@
 
 {% block content %}
 <div class="col-md-10 offset-md-1">
-  <h1>Traps</h1>
-
-  <div class="form-group float-right">
-    <a href="{% url 'trap_new' %}" class="btn btn-success">New Trap</a>
-  </div>
+  {% url 'trap_new' as url %}
+  {% include "inserts/header.html" with name='Traps' local=url new=True%}
 
   <table class="table table-striped table-hover">
     <thead>

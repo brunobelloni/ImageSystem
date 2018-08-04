@@ -2,22 +2,22 @@
 {% block title %} Classifier {% endblock %}
 
 {% block content %}
-<div class="col-md-10 offset-md-1">
+<div>
 
-  <div class="d-flex align-items-center justify-content-center h-100">
-    <h3>Currently there are <span class="badge badge-primary">{{ quantity }}</span> unclassified insects</h3>
+  <div class="center-align">
+    <h3>Currently there are {{ quantity }} unclassified insects</h3>
   </div>
 
   {% if img %}
-  <div class="d-flex align-items-center justify-content-center h-100">
-    <img class="rounded" src="{{ img }}" alt="">
+  <div class="center-align">
+    <img src="{{ img }}" alt="">
   </div>
 
-  <div class="d-flex align-items-center justify-content-center h-100">
-    <div class="btn-group form-group">
-      <a href="#" class="btn btn-primary">Ninfa</a>
-      <a href="#" class="btn btn-primary">Aptero</a>
-      <a href="#" class="btn btn-primary">Alado</a>
+  <div class="center-align">
+    <div>
+      <a href="#" class="waves-effect waves-light btn green darken-2">Ninfa</a>
+      <a href="#" class="waves-effect waves-light btn green darken-2">Aptero</a>
+      <a href="#" class="waves-effect waves-light btn green darken-2">Alado</a>
     </div>
   </div>
   {% endif %}

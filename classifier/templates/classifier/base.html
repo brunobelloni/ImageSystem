@@ -1,42 +1,101 @@
 <!DOCTYPE html> {% load static %}
-<html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title> {% block title %} {% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-  <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
-  <script src="{% static 'bootstrap/js/jquery.js' %}"></script>
-  <script src="{% static 'bootstrap/js/pooper.js' %}"></script>
-  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
-  {% block aditional %} {% endblock %}
+  <link href="{% static 'materialize/materialize.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}" /> {% block aditional %} {% endblock %}
 </head>
-<body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'index' %}">Classifier</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      <div class="collapse navbar-collapse" id="navbarsExample04">
-        <ul class="navbar-nav mr-auto">
-          <li {% if "images" in request.path %} class="active" {% endif %}><a class="nav-link" href="{% url 'images' %}">Images</a></li>
-          <li {% if "insects" in request.path %} class="active" {% endif %}><a class="nav-link" href="{% url 'insects' %}">Insects</a></li>
-          <li {% if "traps" in request.path %} class="active" {% endif %}><a class="nav-link" href="{% url 'traps' %}">Traps</a></li>
-          <li {% if "variables" in request.path %} class="active" {% endif %}><a class="nav-link" href="{% url 'variables' %}">Variables</a></li>
-          <li {% if "data" in request.path %} class="active" {% endif %}><a class="nav-link" href="{% url 'data' %}">Data</a></li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item active"><a class="nav-link">Welcome: {{ user.username }}</a></li>
-          <li class="nav-item active"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
-        </ul>
-      </div>
+
+<body class="has-fixed-sidenav">
+  <header>
+    <div class="navbar-fixed">
+      <nav class="navbar white">
+        <div class="nav-wrapper"><a href="#!" class="brand-logo grey-text text-darken-4">Home</a>
+          <ul id="nav-mobile" class="right">
+            <li class="hide-on-med-and-down waves-effect"><a href="/products/admin">New Image</a></li>
+            <li><a href="#!" data-target="chat-dropdown" class="waves-effect">Logout</li>
+          </ul>
+          <a href="#!" data-target="sidenav-left" class="sidenav-trigger left"><i class="material-icons black-text">menu</i></a>
+        </div>
+      </nav>
     </div>
-  </nav>
-  <div class="col-md-10 offset-md-1">
-    <div style="padding-top: 30px;"  class="jumbotron">
+
+    <ul id="sidenav-left" class="sidenav sidenav-fixed light-green lighten-1">
+      <li><a href="{% url 'index' %}" class="logo-container">Classifier<i class="material-icons left">spa</i></a></li>
+      <li><a href="{% url 'images' %}" class="waves-effect active">Images<i class="material-icons">image</i></a></li>
+      <li><a href="{% url 'insects' %}" class="waves-effect active">Insects<i class="material-icons">bug_report</i></a></li>
+      <li><a href="{% url 'traps' %}" class="waves-effect active">Traps<i class="material-icons">panorama_fish_eye</i></a></li>
+      <li><a href="{% url 'variables' %}" class="waves-effect active">Variables<i class="material-icons">code</i></a></li>
+      <li><a href="{% url 'data' %}" class="waves-effect active">Data<i class="material-icons">view_list</i></a></li>
+    </ul>
+  </header>
+
+  <main>
+    <div class="container">
       {% block content %} {% endblock %}
     </div>
-  </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col s6 m3">
+          <img width="60%" src="{% static 'logo.png' %}" alt="Instituto Federal de Educação, Ciência e Tecnologia SUL-RIO-GRANDENSE">
+          <p>Made with django.</p>
+        </div>
+        <div class="col s6 m3">
+          <h5>About</h5>
+          <ul>
+            <li><a href="#!">Blog</a></li>
+            <li><a href="#!">Pricing</a></li>
+            <li><a href="#!">Docs</a></li>
+          </ul>
+        </div>
+        <div class="col s6 m3">
+          <h5>Connect</h5>
+          <ul>
+            <li><a href="#!">Community</a></li>
+            <li><a href="#!">Subscribe</a></li>
+            <li><a href="#!">Email</a></li>
+          </ul>
+        </div>
+        <div class="col s6 m3">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="#!">Twitter</a></li>
+            <li><a href="#!">Facebook</a></li>
+            <li><a href="#!">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
+  <script type="text/javascript" src="{% static 'materialize/materialize.js' %}"></script>
+  <script type="text/javascript">
+    (function($) {
+      $(function() {
+        $('.sidenav').sidenav();
+      });
+    })(jQuery);
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems, options);
+    });
+
+    // Or with jQuery
+
+    $(document).ready(function() {
+      $('select').formSelect();
+    });
+  </script>
 </body>
+
 </html>

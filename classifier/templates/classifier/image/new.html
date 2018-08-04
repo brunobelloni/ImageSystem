@@ -1,44 +1,48 @@
 {% extends "classifier/base.html" %}
 {% block title %}New Image - Classifier{% endblock %}
-
 {% load static %}
-{% block aditional %} <script type="text/javascript" src="{% static 'js/loadImage.js' %}"></script> {% endblock %}
+
+{% block aditional %}<script type="text/javascript" src="{% static 'js/loadImage.js' %}"></script>{% endblock %}
 
 {% block content %}
-<div class="col-md-10 offset-md-1">
-  <h1>New Image</h1>
+<div>
+  {% url 'images' as url %}
+  {% include "inserts/header.html" with name='New Image' local=url%}
 
-  <div class="form-group float-right">
-    <a href="{% url 'images' %}" class="btn btn-danger">Back</a>
-  </div>
-
-  <form style="margin-top: 20px;" method="POST" class="post-form">
+  <form method="POST">
     {% csrf_token %}
 
-    <div class="form-group">
+    <div>
       <select name="trap" class="custom-select " required id="id_trap">
         {% if traps %}
-        <option value="" selected>Choose a Trap</option>
-        {% for trap in traps %}
-        <option value="{{ trap.id }}">{{ trap.description }}</option>
-        {% endfor %}
-        {% else %}
-        <option value="" selected>No trap registered</option>
+          <option value="" selected>Choose a Trap</option>
+          {% for trap in traps %}
+            <option value="{{ trap.id }}">{{ trap.description }}</option>
+          {% endfor %}
+          {% else %}
+            <option value="" selected>No trap registered</option>
         {% endif %}
       </select>
     </div>
 
-    <div class="form-group">
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="fileinput" accept="image/gif, image/jpeg, image/png" required onchange="readURL(this);" />
-        <label class="custom-file-label" id="labelText" for="customFile">Choose an Image</label>
-        <div class="col-md-8 offset-md-2">
-          <img id="id_src" style="height: 350px; width: 100%; object-fit: cover; margin-top: 10px; margin-bottom: 360px;" class="img-fluid">
+    <div>
+      <div class="file-field input-field">
+        <div class="waves-effect waves-light btn green darken-2">
+          <span>Browse</span>
+          <input type="file" class="custom-file-input" id="fileinput" accept="image/gif, image/jpeg, image/png" required onchange="readURL(this);" />
         </div>
-        <p><textarea name="image" style="display:none;" class="form-control-" required id="id_image"></textarea></p>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload image" />
+        </div>
+      </div>
+      <div class="image-form-field">
+        <img id="id_src" style="height: 350px; width: 100%; object-fit: cover;">
+        <p><textarea name="image" style="display:none;" required id="id_image"></textarea></p>
       </div>
     </div>
-    <button type="submit" class="save btn btn-success float-right">Save</button>
+
+    <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button>
   </form>
+
 </div>
 {% endblock %}

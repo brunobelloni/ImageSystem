@@ -3,11 +3,8 @@
 
 {% block content %}
 <div class="col-md-10 offset-md-1">
-  <h1>Insects</h1>
-
-  <div class="form-group float-right">
-    <a href="{% url 'insect_new' %}" class="btn btn-success">New Insect</a>
-  </div>
+  {% url 'insect_new' as url %}
+  {% include "inserts/header.html" with name='Insects' local=url new=True%}
 
   <table class="table table-striped table-hover">
     <thead>

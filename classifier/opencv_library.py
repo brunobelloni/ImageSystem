@@ -112,6 +112,5 @@ def set_data_img(b64, img_id):
                     elif desc == 'hu5': value = float(hu[5])
                     elif desc == 'hu6': value = float(hu[6])
                     else: continue
-                    print(hu)
                     Trap_Image_Data.objects.create(image=img_id, variable=v, value=value, cordX=x, cordY=y)
     return True

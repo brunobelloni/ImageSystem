@@ -3,11 +3,8 @@
 
 {% block content %}
 <div class="col-md-10 offset-md-1">
-  <h1>New Data</h1>
-
-  <div class="form-group float-right">
-    <a href="{% url 'data' %}" class="btn btn-danger">Back</a>
-  </div>
+  {% url 'data' as url %}
+  {% include "inserts/header.html" with name='New Data' local=url%}
 
   <form style="margin-top: 20px;" method="POST" class="post-form">
     {% csrf_token %}
