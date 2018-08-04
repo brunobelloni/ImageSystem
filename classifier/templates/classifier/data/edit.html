@@ -11,10 +11,8 @@
       <a href="{% url 'data_detail' pk=data.pk %}" class="waves-effect waves-light btn red">Back</a>
     </div>
   </div>
-
   <form method="POST">
     {% csrf_token %}
-
     <div class="input-field">
       <select name="image" class="custom-select " required id="id_image">
           {% if images %}

@@ -1,9 +1,6 @@
 {% extends "classifier/base.html" %}
 {% block title %}Images - Classifier{% endblock %}
 
-{% load static %}
-{% block aditional %} <link rel="stylesheet" href="{% static 'css/loader.css' %}">{% endblock %}
-
 {% block content %}
 <div>
   {% url 'image_new_data' as url %}
@@ -13,7 +10,7 @@
       {% for img in display_img %}
       <div class="col-md-6">
         <div>
-          <a href="{% url 'image_detail' pk=img.id %}"><img style="height: 350px; width: 100%; object-fit: cover;" class="card-img-top zoom" src="{{ img.image }}" alt="Card image cap"></a>
+          <a href="{% url 'image_detail' pk=img.id %}"><img style="height: 350px; width: 100%; object-fit: cover;" src="{{ img.image }}" alt="Card image cap"></a>
         </div>
       </div>
       {% endfor %}

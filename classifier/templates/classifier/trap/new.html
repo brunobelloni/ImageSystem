@@ -5,7 +5,6 @@
 <div>
   {% url 'traps' as url %}
   {% include "inserts/header.html" with name='New Trap' local=url%}
-
   <form method="POST">
     {% csrf_token %}
     <div class="input-field">

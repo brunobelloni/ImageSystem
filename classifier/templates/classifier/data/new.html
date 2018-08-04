@@ -5,7 +5,6 @@
 <div>
   {% url 'data' as url %}
   {% include "inserts/header.html" with name='New Data' local=url%}
-
   <form method="POST">
     {% csrf_token %}
     <div class="input-field">

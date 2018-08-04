@@ -5,7 +5,6 @@
 <div>
   {% url 'trap_new' as url %}
   {% include "inserts/header.html" with name='Traps' local=url new=True%}
-
   <table class="highlight">
     <thead>
       <tr>
@@ -14,14 +13,12 @@
       </tr>
     </thead>
     <tbody>
-      {% if traps %}
-        {% for trap in traps %}
-          <tr onclick="window.location='{% url 'trap_detail' pk=trap.id %}';">
-            <th scope="row">{{ trap.id }}</th>
-            <td>{{ trap.description }}</td>
-          </tr>
-        {% endfor %}
-      {% endif %}
+      {% if traps %} {% for trap in traps %}
+      <tr onclick="window.location='{% url 'trap_detail' pk=trap.id %}';">
+        <th scope="row">{{ trap.id }}</th>
+        <td>{{ trap.description }}</td>
+      </tr>
+      {% endfor %} {% endif %}
     </tbody>
   </table>
 </div>

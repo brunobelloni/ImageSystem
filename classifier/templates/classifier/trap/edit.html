@@ -11,10 +11,9 @@
       <a href="{% url 'trap_detail' pk=trap.pk %}" class="waves-effect waves-light btn red">Back</a>
     </div>
   </div>
-
-  <form method="POST" class="post-form">
+  <form method="POST">
     {% csrf_token %}
-    <div class="form-group">
+    <div class="input-field">
       <label for="formGroupExampleInput">Description</label>
       <input type="text" name="description" class="form-control" id="id_description" required autofocus placeholder="Trap description" value="{{ trap.description }}">
     </div>

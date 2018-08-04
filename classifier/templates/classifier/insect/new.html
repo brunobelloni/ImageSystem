@@ -5,8 +5,7 @@
 <div>
   {% url 'insects' as url %}
   {% include "inserts/header.html" with name='New Insect' local=url%}
-
-  <form style="margin-top: 20px;" method="POST" class="post-form">
+  <form method="POST">
     {% csrf_token %}
     <div class="input-field">
       <label for="formGroupExampleInput">Description</label>

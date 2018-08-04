@@ -1,6 +1,6 @@
 {% extends "classifier/base.html" %}
 {% block title %}Editing Image {{ img.id }} - Classifier{% endblock %}
-{% load static %} 
+{% load static %}
 
 {% block aditional %}<script type="text/javascript" src="{% static 'js/loadImage.js' %}"></script> {% endblock %}
 
@@ -14,11 +14,9 @@
       <a href="{% url 'image_detail' pk=img.pk %}" class="waves-effect waves-light btn red">Back</a>
     </div>
   </div>
-
-  <form style="margin-top: 20px;" method="POST" class="post-form">
+  <form method="POST">
     {% csrf_token %}
-
-    <div class="form-group">
+    <div class="input-field">
       <select name="trap" class="custom-select " required id="id_trap">
         {% if traps %}
           {% for trap in traps %}
@@ -29,18 +27,18 @@
         {% endif %}
       </select>
     </div>
-
-    <div class="form-group">
-      <div class="custom-file">
+    <div class="file-field input-field">
+      <div class="waves-effect waves-light btn green darken-2">
+        <span>Browse</span>
         <input type="file" class="custom-file-input" id="fileinput" accept="image/gif, image/jpeg, image/png" required onchange="readURL(this);" />
-        <label class="custom-file-label" id="labelText" for="customFile">Choose an Image</label>
-        <div class="col-md-8 offset-md-2">
-          <img id="id_src" style="height: 350px; width: 100%; object-fit: cover; margin-top: 10px; margin-bottom: 360px;" class="img-fluid" src="{{ img.image }}">
-        </div>
-        <p><textarea name="image" style="display:none;" class="form-control-" required id="id_image"></textarea></p>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload image" />
       </div>
     </div>
-    <button type="submit" class="save btn btn-success float-right">Save</button>
+    <img id="id_src" style="height: 350px; width: 100%; object-fit: cover; margin-top: 10px" class="img-fluid" src="{{ img.image }}">
+    <p><textarea name="image" style="display:none;" class="form-control-" required id="id_image"></textarea></p>
+    <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button
   </form>
 </div>
 {% endblock %}

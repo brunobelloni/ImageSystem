@@ -8,10 +8,8 @@
 <div>
   {% url 'images' as url %}
   {% include "inserts/header.html" with name='New Image' local=url%}
-
   <form method="POST">
     {% csrf_token %}
-
     <div>
       <select name="trap" class="custom-select " required id="id_trap">
         {% if traps %}
@@ -24,7 +22,6 @@
         {% endif %}
       </select>
     </div>
-
     <div>
       <div class="file-field input-field">
         <div class="waves-effect waves-light btn green darken-2">
@@ -40,9 +37,7 @@
         <p><textarea name="image" style="display:none;" required id="id_image"></textarea></p>
       </div>
     </div>
-
     <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button>
   </form>
-
 </div>
 {% endblock %}
