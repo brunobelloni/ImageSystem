@@ -15,7 +15,7 @@
     <div>
       <select name="trap" class="custom-select " required id="id_trap">
         {% if traps %}
-          <option value="" selected>Choose a Trap</option>
+          <option value="" selected disabled>Choose a Trap</option>
           {% for trap in traps %}
             <option value="{{ trap.id }}">{{ trap.description }}</option>
           {% endfor %}
@@ -32,7 +32,7 @@
           <input type="file" class="custom-file-input" id="fileinput" accept="image/gif, image/jpeg, image/png" required onchange="readURL(this);" />
         </div>
         <div class="file-path-wrapper">
-          <input class="file-path validate" type="text" placeholder="Upload image" />
+          <input class="file-path validate" type="text" placeholder="Upload image"/>
         </div>
       </div>
       <div class="image-form-field">

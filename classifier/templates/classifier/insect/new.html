@@ -2,20 +2,17 @@
 {% block title %}New Insect - Classifier{% endblock %}
 
 {% block content %}
-<div class="col-md-10 offset-md-1">
-  
+<div>
   {% url 'insects' as url %}
   {% include "inserts/header.html" with name='New Insect' local=url%}
 
   <form style="margin-top: 20px;" method="POST" class="post-form">
     {% csrf_token %}
-
-    <div class="form-group">
+    <div class="input-field">
       <label for="formGroupExampleInput">Description</label>
       <input type="text" name="description" class="form-control" id="id_description" required autofocus placeholder="Insect description">
     </div>
-
-    <button type="submit" class="save btn btn-success float-right">Save</button>
+    <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button>
   </form>
 </div>
 {% endblock %}

@@ -2,22 +2,23 @@
 {% block title %}Editing Trap {{ trap.id }} - Classifier{% endblock %}
 
 {% block content %}
-<div class="col-md-10 offset-md-1">
-  <h1>Editing Trap {{ trap.id }}</h1>
-
-  <div class="form-group float-right">
-    <a href="{% url 'trap_detail' pk=trap.id %}" class="btn btn-danger">Back</a>
+<div>
+  <div class="row">
+    <div class="col">
+      <h4>Editing Trap {{ trap.id }}</h4>
+    </div>
+    <div class="col right">
+      <a href="{% url 'trap_detail' pk=trap.pk %}" class="waves-effect waves-light btn red">Back</a>
+    </div>
   </div>
 
-  <form style="margin-top: 20px;" method="POST" class="post-form">
+  <form method="POST" class="post-form">
     {% csrf_token %}
-
     <div class="form-group">
       <label for="formGroupExampleInput">Description</label>
       <input type="text" name="description" class="form-control" id="id_description" required autofocus placeholder="Trap description" value="{{ trap.description }}">
     </div>
-
-    <button type="submit" class="save btn btn-success float-right">Save</button>
+    <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button>
   </form>
 </div>
 {% endblock %}

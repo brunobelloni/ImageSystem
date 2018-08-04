@@ -1,9 +1,6 @@
 {% extends "classifier/base.html" %}
 {% block title %}Image {{ img.id }} - Classifier{% endblock %}
 
-{% load static %}
-{% block aditional %} <script type="text/javascript" src="{% static 'js/loadImage.js' %}"></script> {% endblock %}
-
 {% block content %}
 <div>
   <div class="row">
@@ -17,7 +14,7 @@
     </div>
   </div>
 
-  <table class="centered highlight striped">
+  <table class="highlight">
     <thead>
       <tr>
         <th scope="col">Id</th>
