@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <title> {% block title %} {% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="{% static 'materialize/materialize.css' %}" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}" />
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" />
   {% block aditional %} {% endblock %}
 </head>
 <body class="has-fixed-sidenav">
@@ -53,7 +53,7 @@
     <div class="container">
       <div class="row">
         <div class="col s6 m3">
-          <img width="60%" src="{% static 'logo.png' %}" alt="Instituto Federal de Educação, Ciência e Tecnologia SUL-RIO-GRANDENSE">
+          <img width="60%" src="{% static 'images/logo.png' %}" alt="Instituto Federal de Educação, Ciência e Tecnologia SUL-RIO-GRANDENSE">
           <p>Made with django.</p>
         </div>
         <div class="col s6 m3">
@@ -85,7 +85,7 @@
   </footer>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
-  <script type="text/javascript" src="{% static 'materialize/materialize.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
   <script type="text/javascript">
     (function($) {
       $(function() {
