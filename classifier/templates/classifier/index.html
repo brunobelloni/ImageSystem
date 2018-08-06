@@ -15,9 +15,14 @@
 
   <div class="center-align">
     <div>
-      <a href="#" class="waves-effect waves-light btn green darken-2">Ninfa</a>
-      <a href="#" class="waves-effect waves-light btn green darken-2">Aptero</a>
-      <a href="#" class="waves-effect waves-light btn green darken-2">Alado</a>
+
+      {% if insects %}
+        {% for i in insects %}
+          <a href="#" class="waves-effect waves-light btn green darken-2">{{ i.description }}</a>
+        {% endfor %}
+      {% else %}
+        <p>No Insects</p>
+      {% endif %}
     </div>
   </div>
   {% endif %}

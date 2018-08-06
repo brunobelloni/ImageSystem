@@ -18,7 +18,9 @@ def index(request):
     except Exception as e:
         img = None
 
-    return render(request, 'classifier/index.html', {'unclassified_data': unclassified_data, 'quantity': quantity, 'img': img})
+    insects = Insect.objects.all()
+
+    return render(request, 'classifier/index.html', {'unclassified_data': unclassified_data, 'quantity': quantity, 'img': img, 'insects': insects})
 
 def teste(request):
     return render(request, 'teste.html')
