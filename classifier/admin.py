@@ -4,6 +4,7 @@ from .models import (Trap, Trap_Image,
                      Trap_Image_Data,)
 
 class Data(admin.ModelAdmin):
+    list_display = ('id', 'image', 'variable', 'insect', 'value', 'cordX', 'cordY')
     search_fields = ('id',)
 
 admin.site.register(Trap)

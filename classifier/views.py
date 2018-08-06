@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.template import loader
 from django.shortcuts import render, redirect
 from .opencv_library import get_cropped_img, set_data_img
 from django.contrib.auth.decorators import login_required
@@ -7,7 +8,7 @@ from .forms import ImageForm, InsectForm, TrapForm, VariableForm, DataForm
 
 @login_required
 def index(request):
-    unclassified_data = Trap_Image_Data.objects.filter(insect=None)[:10]
+    unclassified_data = Trap_Image_Data.objects.order_by('id').filter(insect=None)
     quantity = int(len(Trap_Image_Data.objects.filter(insect=None)) / len(Variable.objects.all()))
 
     try:
@@ -18,12 +19,22 @@ def index(request):
     except Exception as e:
         img = None
 
-    insects = Insect.objects.all()
+    try:
+        insects = Insect.objects.order_by('id')
+    except Exception as e:
+        insects = None
 
-    return render(request, 'classifier/index.html', {'unclassified_data': unclassified_data, 'quantity': quantity, 'img': img, 'insects': insects})
+    return render(request, 'classifier/index.html', {'unclassified_data': unclassified_data, 'quantity': quantity, 'img': img, 'insects': insects, 'data': first})
 
-def teste(request):
-    return render(request, 'teste.html')
+def set_teste(request, id, x, y):
+    insect = Insect.objects.get(id=id)
+    data = Trap_Image_Data.objects.filter(cordX=x).filter(cordY=y)
+
+    for d in data:
+        d.insect = insect
+        d.save()
+
+    return redirect('index')
 
 
 ##########################

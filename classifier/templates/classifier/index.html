@@ -16,13 +16,17 @@
   <div class="center-align">
     <div>
 
-      {% if insects %}
-        {% for i in insects %}
-          <a href="#" class="waves-effect waves-light btn green darken-2">{{ i.description }}</a>
-        {% endfor %}
-      {% else %}
-        <p>No Insects</p>
-      {% endif %}
+      <form class="input-field" method="post">
+        {% if insects %}
+          {% for i in insects %}
+            <a href="{% url 'set_teste' id=i.id x=data.cordX y=data.cordY %}" class="waves-effect waves-light btn green darken-2">{{ i.description }}</a>
+          {% endfor %}
+          <a href="#" class="waves-effect waves-light btn red darken-2 delete"><i class="material-icons">delete</i></a>
+        {% else %}
+          <p>No Insects</p>
+        {% endif %}
+      </form>
+
     </div>
   </div>
   {% endif %}

@@ -29,6 +29,5 @@ urlpatterns = [
     path('data/<int:pk>/', views.data_detail, name='data_detail'),
     path('data/edit/<int:pk>/', views.data_edit, name='data_edit'),
     path('data/delete/<int:pk>/', views.data_delete, name='data_delete'),
-
-    path('teste/', views.teste, name='teste'),
+    path('<int:id>/<int:x>/<int:y>', views.set_teste, name='set_teste'),
 ]
