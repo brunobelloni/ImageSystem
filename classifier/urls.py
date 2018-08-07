@@ -30,4 +30,5 @@ urlpatterns = [
     path('data/edit/<int:pk>/', views.data_edit, name='data_edit'),
     path('data/delete/<int:pk>/', views.data_delete, name='data_delete'),
     path('<int:id>/<int:x>/<int:y>', views.set_teste, name='set_teste'),
+    path('<int:x>/<int:y>', views.delete_teste, name='delete_teste'),
 ]

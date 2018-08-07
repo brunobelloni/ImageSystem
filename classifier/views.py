@@ -36,6 +36,14 @@ def set_teste(request, id, x, y):
 
     return redirect('index')
 
+def delete_teste(request, x, y):
+    data = Trap_Image_Data.objects.filter(cordX=x).filter(cordY=y)
+
+    for d in data:
+        d.delete()
+
+    return redirect('index')
+
 
 ##########################
 ## Functions to Insects ##
