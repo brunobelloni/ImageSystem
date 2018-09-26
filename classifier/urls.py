@@ -1,5 +1,6 @@
-from . import views
 from django.urls import path
+
+from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -23,7 +24,8 @@ urlpatterns = [
     path('variables/new/', views.variable_new, name='variable_new'),
     path('variables/<int:pk>/', views.variable_detail, name='variable_detail'),
     path('variables/edit/<int:pk>/', views.variable_edit, name='variable_edit'),
-    path('variables/delete/<int:pk>/', views.variable_delete, name='variable_delete'),
+    path('variables/delete/<int:pk>/',
+         views.variable_delete, name='variable_delete'),
     path('data/', views.view_data, name='data'),
     path('data/new/', views.data_new, name='data_new'),
     path('data/<int:pk>/', views.data_detail, name='data_detail'),

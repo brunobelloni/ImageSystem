@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Trap(models.Model):
     description = models.CharField(max_length=200)
 
@@ -9,6 +10,7 @@ class Trap(models.Model):
     class Meta():
         verbose_name = 'Trap'
         verbose_name_plural = 'Traps'
+
 
 class Trap_Image(models.Model):
     date = models.DateField(auto_now=True)
@@ -22,6 +24,7 @@ class Trap_Image(models.Model):
         verbose_name = 'Image'
         verbose_name_plural = 'Images'
 
+
 class Insect(models.Model):
     description = models.CharField(max_length=100)
 
@@ -31,6 +34,7 @@ class Insect(models.Model):
     class Meta():
         verbose_name = 'Insect'
         verbose_name_plural = 'Insects'
+
 
 class Variable(models.Model):
     description = models.CharField(max_length=100)
@@ -42,13 +46,15 @@ class Variable(models.Model):
         verbose_name = 'Variable'
         verbose_name_plural = 'Variables'
 
+
 class Trap_Image_Data(models.Model):
     image = models.ForeignKey(Trap_Image, on_delete=models.CASCADE)
     variable = models.ForeignKey(Variable, on_delete=models.CASCADE)
-    insect = models.ForeignKey(Insect, null=True, blank=True, on_delete=models.CASCADE)
+    insect = models.ForeignKey(
+        Insect, null=True, blank=True, on_delete=models.CASCADE)
     value = models.FloatField()
-    cordX = models.IntegerField()
-    cordY = models.IntegerField()
+    x = models.IntegerField()
+    y = models.IntegerField()
 
     def __str__(self):
         return str(self.id)
