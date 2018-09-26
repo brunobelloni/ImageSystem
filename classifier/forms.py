@@ -1,6 +1,13 @@
+from croppie.fields import CroppieField
 from django import forms
 
 from .models import Insect, Trap, Trap_Image, Trap_Image_Data, Variable
+
+
+class AddForm(forms.Form):
+    image = CroppieField(options={'viewport': {'width': 120, 'height': 140},
+                                  'boundary': {'width': 200, 'height': 220},
+                                  'showZoomer': True})
 
 
 class ImageForm(forms.ModelForm):

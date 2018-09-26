@@ -7,6 +7,7 @@ Requirements:
 > pip install numpy</br>
 > pip install base64</br>
 > pip install psycopg2</br>
+> pip install django-croppie</br>
 > pgAdmin 4
 
 Coisas para o futuro:

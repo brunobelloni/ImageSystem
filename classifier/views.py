@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.template import loader
 
-from .forms import DataForm, ImageForm, InsectForm, TrapForm, VariableForm
+from .forms import (AddForm, DataForm, ImageForm, InsectForm, TrapForm,
+                    VariableForm)
 from .models import Insect, Trap, Trap_Image, Trap_Image_Data, Variable
 from .opencv_library import get_cropped_img, set_data_img
 
@@ -131,7 +132,7 @@ def image_new(request):
     else:
         form = ImageForm()
 
-    dict = {'form': form, 'traps': traps}
+    dict = {'form': form, 'traps': traps, 'crp': crp}
     return render(request, 'classifier/image/new.html', dict)
 
 
@@ -149,7 +150,9 @@ def image_new_data(request):
     else:
         form = ImageForm()
 
-    dict = {'form': form, 'traps': traps}
+    crop = AddForm()
+    print(crop)
+    dict = {'form': form, 'traps': traps, 'crop': crop}
     return render(request, 'classifier/image/new.html', dict)
 
 
