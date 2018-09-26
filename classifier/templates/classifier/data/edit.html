@@ -1,68 +1,71 @@
 {% extends "classifier/base.html" %}
-{% block title %}Editing Data {{ data.id }} - Classifier{% endblock %}
+{% block title %}Editing Data
+  {{ data.id }}
+  - Classifier{% endblock %}
 
 {% block content %}
-<div>
-  <div class="row">
-    <div class="col">
-      <h4>Editing Data {{ data.id }}</h4>
+  <div>
+    <div class="row">
+      <div class="col">
+        <h4>Editing Data
+          {{ data.id }}</h4>
+      </div>
+      <div class="col right">
+        <a href="{% url 'data_detail' pk=data.pk %}" class="waves-effect waves-light btn red">Back</a>
+      </div>
     </div>
-    <div class="col right">
-      <a href="{% url 'data_detail' pk=data.pk %}" class="waves-effect waves-light btn red">Back</a>
-    </div>
-  </div>
-  <form method="POST">
-    {% csrf_token %}
-    <div class="input-field">
-      <select name="image" class="custom-select " required id="id_image">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="input-field">
+        <select name="image" class="custom-select " required="required" id="id_image">
           {% if images %}
             {% for image in images %}
-              <option {% if image.id == data.image.id %} selected {% endif %} value="{{ image.id }}">{{ image.id }}</option>
+              <option {% if image.id == data.image.id %} selected="selected" {% endif %} value="{{ image.id }}">{{ image.id }}</option>
             {% endfor %}
           {% else %}
-            <option value="" selected>No image registered</option>
+            <option value="" selected="selected">No image registered</option>
           {% endif %}
         </select>
-      <label>Image</label>
-    </div>
-    <div class="input-field">
-      <select name="variable" class="custom-select " required id="id_variable">
+        <label>Image</label>
+      </div>
+      <div class="input-field">
+        <select name="variable" class="custom-select " required="required" id="id_variable">
           {% if variables %}
             {% for variable in variables %}
-              <option {% if variable.id == data.variable.id %} selected {% endif %} value="{{ variable.id }}">{{ variable.description }}</option>
+              <option {% if variable.id == data.variable.id %} selected="selected" {% endif %} value="{{ variable.id }}">{{ variable.description }}</option>
             {% endfor %}
           {% else %}
-            <option value="" selected>No variable registered</option>
+            <option value="" selected="selected">No variable registered</option>
           {% endif %}
         </select>
-      <label>Variable</label>
-    </div>
-    <div class="input-field">
-      <select name="insect" class="custom-select " id="id_insect">
+        <label>Variable</label>
+      </div>
+      <div class="input-field">
+        <select name="insect" class="custom-select " id="id_insect">
           {% if insects %}
-              <option value="None">None</option>
+            <option value="None">None</option>
             {% for insect in insects %}
-              <option {% if insect.id == data.insect.id %} selected {% endif %} value="{{ insect.id }}">{{ insect.description }}</option>
+              <option {% if insect.id == data.insect.id %} selected="selected" {% endif %} value="{{ insect.id }}">{{ insect.description }}</option>
             {% endfor %}
           {% else %}
-            <option value="" selected>No insect registered</option>
+            <option value="" selected="selected">No insect registered</option>
           {% endif %}
         </select>
-      <label>Insects</label>
-    </div>
-    <div class="input-field">
-      <label>Value</label>
-      <input type="number" name="value" class="form-control" id="id_value" step="0.00001" required placeholder="Value" value="{{ data.value }}">
-    </div>
-    <div class="input-field">
-      <label>X</label>
-      <input type="number" name="x" class="form-control" id="id_x" required placeholder="Point X" value="{{ data.x }}">
-    </div>
-    <div class="input-field">
-      <label>Y</label>
-      <input type="number" name="y" class="form-control" id="id_y" required placeholder="Point Y" value="{{ data.y }}">
-    </div>
-    <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button>
-  </form>
-</div>
+        <label>Insects</label>
+      </div>
+      <div class="input-field">
+        <label>Value</label>
+        <input type="number" name="value" class="form-control" id="id_value" step="0.00001" required="required" placeholder="Value" value="{{ data.value }}">
+      </div>
+      <div class="input-field">
+        <label>X</label>
+        <input type="number" name="x" class="form-control" id="id_x" required="required" placeholder="Point X" value="{{ data.x }}">
+      </div>
+      <div class="input-field">
+        <label>Y</label>
+        <input type="number" name="y" class="form-control" id="id_y" required="required" placeholder="Point Y" value="{{ data.y }}">
+      </div>
+      <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button>
+    </form>
+  </div>
 {% endblock %}

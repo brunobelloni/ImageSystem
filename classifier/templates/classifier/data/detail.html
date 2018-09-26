@@ -1,39 +1,43 @@
 {% extends "classifier/base.html" %}
-{% block title %}Data {{ data.id }} - Classifier{% endblock %}
+{% block title %}Data
+  {{ data.id }}
+  - Classifier{% endblock %}
 
 {% block content %}
-<div>
-  <div class="row">
-    <div class="col">
-      <h4>Data {{ data.id }}</h4>
+  <div>
+    <div class="row">
+      <div class="col">
+        <h4>Data
+          {{ data.id }}</h4>
+      </div>
+      <div class="col right">
+        <a href="{% url 'data_edit' pk=data.id %}" class="waves-effect waves-light btn green darken-2">Edit</a>
+        <a href="{% url 'data' %}" class="waves-effect waves-light btn red">Back</a>
+        <a href="{% url 'data_delete' pk=data.id %}" class="waves-effect waves-light btn red">Delete</a>
+      </div>
     </div>
-    <div class="col right">
-      <a href="{% url 'data_edit' pk=data.id %}" class="waves-effect waves-light btn green darken-2">Edit</a>
-      <a href="{% url 'data' %}" class="waves-effect waves-light btn red">Back</a>
-      <a href="{% url 'data_delete' pk=data.id %}" class="waves-effect waves-light btn red">Delete</a>
-    </div>
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Value</th>
+          <th scope="col">Variable</th>
+          <th scope="col">X, Y</th>
+          <th scope="col">Image</th>
+          <th scope="col">Insect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{ data.id }}</th>
+          <td>{{ data.value }}</td>
+          <td>{{ data.variable }}</td>
+          <td>{{ data.x }},
+            {{ data.y }}</td>
+          <td>{{ data.image.id }}</td>
+          <td>{{ data.insect }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <table class="highlight">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Value</th>
-        <th scope="col">Variable</th>
-        <th scope="col">X, Y</th>
-        <th scope="col">Image</th>
-        <th scope="col">Insect</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">{{ data.id }}</th>
-        <td>{{ data.value }}</td>
-        <td>{{ data.variable }}</td>
-        <td>{{ data.cordX }}, {{ data.cordY }}</td>
-        <td>{{ data.image.id }}</td>
-        <td>{{ data.insect }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 {% endblock %}

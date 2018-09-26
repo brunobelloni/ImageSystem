@@ -1,12 +1,12 @@
-html, body {
+body, html {
   height: 100%;
 }
 
 body {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-align: center;
   padding-bottom: 100px;
   background-color: whitesmoke;
 }

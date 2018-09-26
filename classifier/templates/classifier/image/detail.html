@@ -1,34 +1,37 @@
 {% extends "classifier/base.html" %}
-{% block title %}Image {{ img.id }} - Classifier{% endblock %}
+{% block title %}Image
+  {{ img.id }}
+  - Classifier{% endblock %}
 
 {% block content %}
-<div>
-  <div class="row">
-    <div class="col">
-      <h4>Image {{ img.id }}</h4>
+  <div>
+    <div class="row">
+      <div class="col">
+        <h4>Image
+          {{ img.id }}</h4>
+      </div>
+      <div class="col right">
+        <a href="{% url 'image_edit' pk=img.id %}" class="waves-effect waves-light btn green darken-2">Edit</a>
+        <a href="{% url 'images' %}" class="waves-effect waves-light btn red">Back</a>
+        <a href="{% url 'image_delete' pk=img.id %}" class="waves-effect waves-light btn red">Delete</a>
+      </div>
     </div>
-    <div class="col right">
-      <a href="{% url 'image_edit' pk=img.id %}" class="waves-effect waves-light btn green darken-2">Edit</a>
-      <a href="{% url 'images' %}" class="waves-effect waves-light btn red">Back</a>
-      <a href="{% url 'image_delete' pk=img.id %}" class="waves-effect waves-light btn red">Delete</a>
-    </div>
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Trap</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{ img.id }}</th>
+          <td>{{ img.trap }}</td>
+          <td>{{ img.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <img class="responsive-img" src="{{ img.image }}">
   </div>
-  <table class="highlight">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Trap</th>
-        <th scope="col">Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">{{ img.id }}</th>
-        <td>{{ img.trap }}</td>
-        <td>{{ img.date }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <img class="responsive-img" src="{{ img.image }}">
-</div>
 {% endblock %}

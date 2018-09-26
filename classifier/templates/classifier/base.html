@@ -1,100 +1,144 @@
-<!DOCTYPE html> {% load static %}
+<!DOCTYPE html>
+{% load static %}
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title> {% block title %} {% endblock %}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="{% static 'css/materialize.css' %}" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" />
-  {% block aditional %} {% endblock %}
-</head>
-<body class="has-fixed-sidenav">
-  <header>
-    <div class="navbar-fixed">
-      <nav class="navbar white">
-        <div class="nav-wrapper">
-          {% if "images" in request.path %}
-            <a href="#!" class="brand-logo grey-text text-darken-4">Images</a>
-          {% elif "insects" in request.path %}
-            <a href="#!" class="brand-logo grey-text text-darken-4">Insects</a>
-          {% elif "traps" in request.path %}
-            <a href="#!" class="brand-logo grey-text text-darken-4">Traps</a>
-          {% elif "variables" in request.path %}
-            <a href="#!" class="brand-logo grey-text text-darken-4">Variables</a>
-          {% elif "data" in request.path %}
-            <a href="#!" class="brand-logo grey-text text-darken-4">Data</a>
-          {% else %}
-            <a href="#!" class="brand-logo grey-text text-darken-4">Classifier</a>
-          {% endif %}
-          <ul id="nav-mobile" class="right">
-            <li><a class="hide-on-med-and-down waves-effect">Welcome: {{ user.username }}</li>
-            <li><a href="{% url 'logout' %}" class="waves-effect">Logout</li>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{% static 'css/materialize.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}"/>
+    {% block aditional %}{% endblock %}
+  </head>
+  <body class="has-fixed-sidenav">
+    <header>
+      <div class="navbar-fixed">
+        <nav class="navbar white">
+          <div class="nav-wrapper">
+            {% if "images" in request.path %}
+              <a href="#!" class="brand-logo grey-text text-darken-4">Images</a>
+            {% elif "insects" in request.path %}
+              <a href="#!" class="brand-logo grey-text text-darken-4">Insects</a>
+            {% elif "traps" in request.path %}
+              <a href="#!" class="brand-logo grey-text text-darken-4">Traps</a>
+            {% elif "variables" in request.path %}
+              <a href="#!" class="brand-logo grey-text text-darken-4">Variables</a>
+            {% elif "data" in request.path %}
+              <a href="#!" class="brand-logo grey-text text-darken-4">Data</a>
+            {% else %}
+              <a href="#!" class="brand-logo grey-text text-darken-4">Classifier</a>
+            {% endif %}
+            <ul id="nav-mobile" class="right">
+              <li>
+                <a class="hide-on-med-and-down waves-effect">Welcome:
+                  {{ user.username }}</li>
+                <li>
+                  <a href="{% url 'logout' %}" class="waves-effect">Logout</li>
+                </ul>
+                <a href="#!" data-target="sidenav-left" class="sidenav-trigger left">
+                  <i class="material-icons black-text">menu</i>
+                </a>
+              </div>
+            </nav>
+          </div>
+          <ul id="sidenav-left" class="sidenav sidenav-fixed light-green lighten-1">
+            <li>
+              <a href="{% url 'index' %}" class="logo-container">Classifier<i class="material-icons left">spa</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'images' %}" class="waves-effect">Images<i class="material-icons">image</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'insects' %}" class="waves-effect">Insects<i class="material-icons">bug_report</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'traps' %}" class="waves-effect">Traps<i class="material-icons">panorama_fish_eye</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'variables' %}" class="waves-effect">Variables<i class="material-icons">code</i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'data' %}" class="waves-effect">Data<i class="material-icons">view_list</i>
+              </a>
+            </li>
           </ul>
-          <a href="#!" data-target="sidenav-left" class="sidenav-trigger left"><i class="material-icons black-text">menu</i></a>
-        </div>
-      </nav>
-    </div>
-    <ul id="sidenav-left" class="sidenav sidenav-fixed light-green lighten-1">
-      <li><a href="{% url 'index' %}" class="logo-container">Classifier<i class="material-icons left">spa</i></a></li>
-      <li><a href="{% url 'images' %}" class="waves-effect">Images<i class="material-icons">image</i></a></li>
-      <li><a href="{% url 'insects' %}" class="waves-effect">Insects<i class="material-icons">bug_report</i></a></li>
-      <li><a href="{% url 'traps' %}" class="waves-effect">Traps<i class="material-icons">panorama_fish_eye</i></a></li>
-      <li><a href="{% url 'variables' %}" class="waves-effect">Variables<i class="material-icons">code</i></a></li>
-      <li><a href="{% url 'data' %}" class="waves-effect">Data<i class="material-icons">view_list</i></a></li>
-    </ul>
-  </header>
-  <main>
-    <div class="container">
-      {% block content %} {% endblock %}
-    </div>
-  </main>
-  <footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col s6 m3">
-          <img width="60%" src="{% static 'images/logo.png' %}" alt="Instituto Federal de Educação, Ciência e Tecnologia SUL-RIO-GRANDENSE">
-          <p>Made with django.</p>
-        </div>
-        <div class="col s6 m3">
-          <h5>About</h5>
-          <ul>
-            <li><a href="#!">Blog</a></li>
-            <li><a href="#!">Pricing</a></li>
-            <li><a href="#!">Docs</a></li>
-          </ul>
-        </div>
-        <div class="col s6 m3">
-          <h5>Connect</h5>
-          <ul>
-            <li><a href="#!">Community</a></li>
-            <li><a href="#!">Subscribe</a></li>
-            <li><a href="#!">Email</a></li>
-          </ul>
-        </div>
-        <div class="col s6 m3">
-          <h5>Contact</h5>
-          <ul>
-            <li><a href="#!">Twitter</a></li>
-            <li><a href="#!">Facebook</a></li>
-            <li><a href="#!">Github</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
-  <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
-  <script type="text/javascript">
-    (function($) {
-      $(function() {
-        $('.sidenav').sidenav();
-      });
-    })(jQuery);
-    $(document).ready(function() {
-      $('select').formSelect();
-    });
-  </script>
-</body>
-</html>
+        </header>
+        <main>
+          <div class="container">
+            {% block content %}{% endblock %}
+          </div>
+        </main>
+        <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col s6 m3">
+                <img width="60%" src="{% static 'images/logo.png' %}" alt="Instituto Federal de Educação, Ciência e Tecnologia SUL-RIO-GRANDENSE">
+                <p>Made with django.</p>
+              </div>
+              <div class="col s6 m3">
+                <h5>About</h5>
+                <ul>
+                  <li>
+                    <a href="#!">Blog</a>
+                  </li>
+                  <li>
+                    <a href="#!">Pricing</a>
+                  </li>
+                  <li>
+                    <a href="#!">Docs</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col s6 m3">
+                <h5>Connect</h5>
+                <ul>
+                  <li>
+                    <a href="#!">Community</a>
+                  </li>
+                  <li>
+                    <a href="#!">Subscribe</a>
+                  </li>
+                  <li>
+                    <a href="#!">Email</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col s6 m3">
+                <h5>Contact</h5>
+                <ul>
+                  <li>
+                    <a href="#!">Twitter</a>
+                  </li>
+                  <li>
+                    <a href="#!">Facebook</a>
+                  </li>
+                  <li>
+                    <a href="#!">Github</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
+        <script type="text/javascript">
+          (function ($) {
+            $(function () {
+              $('.sidenav').sidenav();
+            });
+          })(jQuery);
+          $(document).ready(function () {
+            $('select').formSelect();
+          });
+        </script>
+      </body>
+    </html>

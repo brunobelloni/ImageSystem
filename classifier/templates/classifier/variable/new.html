@@ -2,16 +2,16 @@
 {% block title %}New Variable - Classifier{% endblock %}
 
 {% block content %}
-<div>
-  {% url 'variables' as url %}
-  {% include "inserts/header.html" with name='New Variable' local=url%}
-  <form method="POST">
-    {% csrf_token %}
-    <div class="input-field">
-      <label for="formGroupExampleInput">Description</label>
-      <input type="text" name="description" class="form-control" id="id_description" required autofocus placeholder="Variable description">
-    </div>
-    <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button>
-  </form>
-</div>
+  <div>
+    {% url 'variables' as url %}
+    {% include "inserts/header.html" with name='New Variable' local=url%}
+    <form method="POST">
+      {% csrf_token %}
+      <div class="input-field">
+        <label for="formGroupExampleInput">Description</label>
+        <input type="text" name="description" class="form-control" id="id_description" required="required" autofocus="autofocus" placeholder="Variable description">
+      </div>
+      <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button>
+    </form>
+  </div>
 {% endblock %}

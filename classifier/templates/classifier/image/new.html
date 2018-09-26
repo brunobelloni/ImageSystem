@@ -2,42 +2,48 @@
 {% block title %}New Image - Classifier{% endblock %}
 {% load static %}
 
-{% block aditional %}<script type="text/javascript" src="{% static 'js/loadImage.js' %}"></script>{% endblock %}
+{% block aditional %}
+  <script type="text/javascript" src="{% static 'js/loadImage.js' %}"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+{% endblock %}
 
 {% block content %}
-<div>
-  {% url 'images' as url %}
-  {% include "inserts/header.html" with name='New Image' local=url%}
-  <form method="POST">
-    {% csrf_token %}
-    <div>
-      <select name="trap" class="custom-select " required id="id_trap">
-        {% if traps %}
-          <option value="" selected disabled>Choose a Trap</option>
-          {% for trap in traps %}
-            <option value="{{ trap.id }}">{{ trap.description }}</option>
-          {% endfor %}
+  <div>
+    {% url 'images' as url %}
+    {% include "inserts/header.html" with name='New Image' local=url%}
+    <form method="POST">
+      {% csrf_token %}
+      <div>
+        <select name="trap" class="custom-select " required="required" id="id_trap">
+          {% if traps %}
+            <option value="" selected="selected" disabled="disabled">Choose a Trap</option>
+            {% for trap in traps %}
+              <option value="{{ trap.id }}">{{ trap.description }}</option>
+            {% endfor %}
           {% else %}
-            <option value="" selected>No trap registered</option>
-        {% endif %}
-      </select>
-    </div>
-    <div>
-      <div class="file-field input-field">
-        <div class="waves-effect waves-light btn green darken-2">
-          <span>Browse</span>
-          <input type="file" class="custom-file-input" id="fileinput" accept="image/gif, image/jpeg, image/png" required onchange="readURL(this);" />
+            <option value="" selected="selected">No trap registered</option>
+          {% endif %}
+        </select>
+      </div>
+      <div>
+        <div class="file-field input-field">
+          <div class="waves-effect waves-light btn green darken-2">
+            <span>Browse</span>
+            <input type="file" class="custom-file-input" id="fileinput" accept="image/gif, image/jpeg, image/png" required="required" onchange="readURL(this);"/>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload image"/>
+          </div>
         </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text" placeholder="Upload image"/>
+        <div class="image-form-field">
+          <img id="id_src" style="height: 350px; width: 100%; object-fit: cover;">
+          <p>
+            <textarea name="image" style="display:none;" required="required" id="id_image"></textarea>
+          </p>
         </div>
       </div>
-      <div class="image-form-field">
-        <img id="id_src" style="height: 350px; width: 100%; object-fit: cover;">
-        <p><textarea name="image" style="display:none;" required id="id_image"></textarea></p>
-      </div>
-    </div>
-    <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button>
-  </form>
-</div>
+      <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button>
+    </form>
+  </div>
 {% endblock %}

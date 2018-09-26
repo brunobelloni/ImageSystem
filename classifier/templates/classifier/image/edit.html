@@ -1,44 +1,50 @@
 {% extends "classifier/base.html" %}
-{% block title %}Editing Image {{ img.id }} - Classifier{% endblock %}
+{% block title %}Editing Image
+  {{ img.id }}
+  - Classifier{% endblock %}
 {% load static %}
 
-{% block aditional %}<script type="text/javascript" src="{% static 'js/loadImage.js' %}"></script> {% endblock %}
+{% block aditional %}
+  <script type="text/javascript" src="{% static 'js/loadImage.js' %}"></script>
+{% endblock %}
 
 {% block content %}
-<div>
-  <div class="row">
-    <div class="col">
-      <h4>Editing Image {{ img.id }}</h4>
-    </div>
-    <div class="col right">
-      <a href="{% url 'image_detail' pk=img.pk %}" class="waves-effect waves-light btn red">Back</a>
-    </div>
-  </div>
-  <form method="POST">
-    {% csrf_token %}
-    <div class="input-field">
-      <select name="trap" class="custom-select " required id="id_trap">
-        {% if traps %}
-          {% for trap in traps %}
-            <option {% if trap.id == img.trap.id %} selected {% endif %} value="{{ trap.id }}">{{ trap.description }}</option>
-          {% endfor %}
-        {% else %}
-          <option value="" selected>No trap registered</option>
-        {% endif %}
-      </select>
-    </div>
-    <div class="file-field input-field">
-      <div class="waves-effect waves-light btn green darken-2">
-        <span>Browse</span>
-        <input type="file" class="custom-file-input" id="fileinput" accept="image/gif, image/jpeg, image/png" required onchange="readURL(this);" />
+  <div>
+    <div class="row">
+      <div class="col">
+        <h4>Editing Image
+          {{ img.id }}</h4>
       </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload image" />
+      <div class="col right">
+        <a href="{% url 'image_detail' pk=img.pk %}" class="waves-effect waves-light btn red">Back</a>
       </div>
     </div>
-    <img id="id_src" style="height: 350px; width: 100%; object-fit: cover; margin-top: 10px" class="img-fluid" src="{{ img.image }}">
-    <p><textarea name="image" style="display:none;" class="form-control-" required id="id_image"></textarea></p>
-    <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button
-  </form>
-</div>
-{% endblock %}
+    <form method="POST">
+      {% csrf_token %}
+      <div class="input-field">
+        <select name="trap" class="custom-select " required="required" id="id_trap">
+          {% if traps %}
+            {% for trap in traps %}
+              <option {% if trap.id == img.trap.id %} selected="selected" {% endif %} value="{{ trap.id }}">{{ trap.description }}</option>
+            {% endfor %}
+          {% else %}
+            <option value="" selected="selected">No trap registered</option>
+          {% endif %}
+        </select>
+      </div>
+      <div class="file-field input-field">
+        <div class="waves-effect waves-light btn green darken-2">
+          <span>Browse</span>
+          <input type="file" class="custom-file-input" id="fileinput" accept="image/gif, image/jpeg, image/png" required="required" onchange="readURL(this);"/>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload image"/>
+        </div>
+      </div>
+      <img id="id_src" style="height: 350px; width: 100%; object-fit: cover; margin-top: 10px" class="img-fluid" src="{{ img.image }}">
+      <p>
+        <textarea name="image" style="display:none;" class="form-control-" required="required" id="id_image"></textarea>
+      </p>
+      <button type="submit" class="waves-effect waves-light btn green darken-2 right">Save</button </form>
+    </div>
+  {% endblock %}
