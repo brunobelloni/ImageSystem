@@ -24,4 +24,4 @@ class TrapForm(forms.ModelForm):
 class DataForm(forms.ModelForm):
     class Meta():
         model = Trap_Image_Data
-        fields = ['image', 'variable', 'insect', 'value', 'x', 'y', ]
+        fields = ['image', 'insect', 'value', 'x', 'y', ]

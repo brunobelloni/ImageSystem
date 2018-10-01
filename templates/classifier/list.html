@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "classifier/base.html" %}
 
 {% block title %}Insects List{% endblock %}
 {% block conteudo %}
@@ -21,13 +21,13 @@
               </tr>
               </thead>
               <tbody>
-              {% for inscet in insects %}
+              {% for insect in insects %}
                 <tr>
-                  <th scope="row">{{ inscet.id }}</th>
-                  <td>{{ inscet.description }}</td>
+                  <th scope="row">{{ insect.id }}</th>
+                  <td>{{ insect.description }}</td>
                   <td class="text-right">
-                    <a href="#" class="btn btn-primary">Update</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    <a href="{% url 'classifier:insect_update' pk=insect.id %}" class="btn btn-primary">Update</a>
+                    <a href="{% url 'classifier:insect_delete' pk=insect.id %}" class="btn btn-danger">Delete</a>
                   </td>
                 </tr>
               {% endfor %}
@@ -40,7 +40,7 @@
         {% endif %}
           <hr/>
           <div class="text-right">
-            <a href="#" class="btn btn-primary">New Insect</a>
+            <a href="{% url 'classifier:insect_create' %}" class="btn btn-primary">New Insect</a>
           </div>
         </div>
       </div>
