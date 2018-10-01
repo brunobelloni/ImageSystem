@@ -3,7 +3,7 @@ import base64
 import cv2
 import numpy as np
 
-from .models import Trap_Image_Data, Variable
+from backend.models import Trap_Image_Data, Variable
 
 
 def b64_2_img(b64):

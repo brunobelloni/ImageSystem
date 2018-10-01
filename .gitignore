@@ -1,3 +1,5 @@
 backend/__pycache__
 classifier/migrations
+backend/migrations
 classifier/__pycache__
+db.sqlite3

@@ -36,22 +36,9 @@ class Insect(models.Model):
         verbose_name_plural = 'Insects'
 
 
-class Variable(models.Model):
-    description = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.description
-
-    class Meta():
-        verbose_name = 'Variable'
-        verbose_name_plural = 'Variables'
-
-
 class Trap_Image_Data(models.Model):
     image = models.ForeignKey(Trap_Image, on_delete=models.CASCADE)
-    variable = models.ForeignKey(Variable, on_delete=models.CASCADE)
-    insect = models.ForeignKey(
-        Insect, null=True, blank=True, on_delete=models.CASCADE)
+    insect = models.ForeignKey(Insect, on_delete=models.CASCADE)
     value = models.FloatField()
     x = models.IntegerField()
     y = models.IntegerField()
