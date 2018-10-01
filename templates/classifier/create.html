@@ -1,5 +1,6 @@
 {% extends "classifier/base.html" %}
 
+{% load mytag %}
 {% load widget_tweaks %}
 
 {% block title %}Insect Registration{% endblock %}
@@ -14,6 +15,12 @@
           <p class="card-text">Complete the form below to register a new <code>Insect</code>.</p>
           <form method="post">
             {% csrf_token %}
+
+          {% if 'Insect' in form|to_class_name %}
+            <p>Ok</p>
+          {% elif 'Trap' in form|to_class_name %}
+            <p>Não</p>
+          {% endif %}
 
             <!-- Description -->
             <div class="input-group mb-3">

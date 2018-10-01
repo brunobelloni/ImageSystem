@@ -33,3 +33,31 @@ class InsectDeleteView(DeleteView):
     model = Insect
     context_object_name = 'insect'
     success_url = reverse_lazy("classifier:insect_list")
+
+
+class TrapListView(ListView):
+    template_name = "classifier/list.html"
+    model = Trap
+    context_object_name = "traps"
+
+
+class TrapCreateView(CreateView):
+    template_name = "classifier/create.html"
+    model = Trap
+    form_class = InsectForm
+    success_url = reverse_lazy("classifier:trap_list")
+
+
+class TrapUpdateView(UpdateView):
+    template_name = "classifier/update.html"
+    model = Trap
+    fields = '__all__'
+    context_object_name = 'trap'
+    success_url = reverse_lazy("classifier:trap_list")
+
+
+class TrapDeleteView(DeleteView):
+    template_name = "classifier/delete.html"
+    model = Trap
+    context_object_name = 'trap'
+    success_url = reverse_lazy("classifier:trap_list")

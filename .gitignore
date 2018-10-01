@@ -3,3 +3,4 @@ classifier/migrations
 backend/migrations
 classifier/__pycache__
 db.sqlite3
+classifier/templatetags/__pycache__
