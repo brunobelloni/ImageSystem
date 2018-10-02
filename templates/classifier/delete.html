@@ -1,27 +1,24 @@
 {% extends "classifier/base.html" %}
 
-<!-- Bloco que define o <title></title> da nossa página -->
 {% block title %}Deleteing Insects{% endblock %}
 
-<!-- Bloco de conteúdo da nossa página -->
 {% block conteudo %}
-  <div class="container mt-5">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Insect Exclusion</h5>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Insect Exclusion</h5>
+      <p class="card-text">Are you sure you want to delete the inscet <b>{{ insect.description }}</b>?</p>
 
-        <p class="card-text">Are you sure you want to delete the inscet <b>{{ insect.description }}</b>?</p>
+      <form method="post">
+        {% csrf_token %}
+        </hr>
+        <div class="text-right">
+          <a href="{% url 'classifier:insect_list' %}" class="btn btn-outline-danger">No</a>
+          <button class="btn btn-danger">Yes</button>
+        </div>
+      </form>
 
-        <form method="post">
-          {% csrf_token %}
-
-          <hr/>
-          <div class="text-right">
-            <a href="{% url 'classifier:insect_list' %}" class="btn btn-outline-danger">No</a>
-            <button class="btn btn-danger">Yes</button>
-          </div>
-        </form>
-      </div>
     </div>
   </div>
+</div>
 {% endblock %}

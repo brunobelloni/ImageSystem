@@ -12,12 +12,25 @@ class InsectListView(ListView):
     model = Insect
     context_object_name = "insects"
 
+    def get_context_data(self, **kwargs):
+        context = super(InsectListView, self).get_context_data(**kwargs)
+        context['name'] = self.model._meta.verbose_name
+        context['length'] = self.model.objects.all().count()
+        context['table_name'] = "classifier/tables/insect_table.html"
+        return context
+
 
 class InsectCreateView(CreateView):
     template_name = "classifier/create.html"
     model = Insect
     form_class = InsectForm
     success_url = reverse_lazy("classifier:insect_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(InsectCreateView, self).get_context_data(**kwargs)
+        context['name'] = self.model._meta.verbose_name
+        context['redirect'] = 'classifier:insect_list'
+        return context
 
 
 class InsectUpdateView(UpdateView):
@@ -40,12 +53,25 @@ class TrapListView(ListView):
     model = Trap
     context_object_name = "traps"
 
+    def get_context_data(self, **kwargs):
+        context = super(TrapListView, self).get_context_data(**kwargs)
+        context['name'] = self.model._meta.verbose_name
+        context['length'] = self.model.objects.all().count()
+        context['table_name'] = "classifier/tables/trap_table.html"
+        return context
+
 
 class TrapCreateView(CreateView):
     template_name = "classifier/create.html"
     model = Trap
-    form_class = InsectForm
+    form_class = TrapForm
     success_url = reverse_lazy("classifier:trap_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(TrapCreateView, self).get_context_data(**kwargs)
+        context['name'] = self.model._meta.verbose_name
+        context['redirect'] = 'classifier:trap_list'
+        return context
 
 
 class TrapUpdateView(UpdateView):

@@ -1,0 +1,21 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Description</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for trap in traps %}
+    <tr>
+      <th scope="row">{{ trap.id }}</th>
+      <td>{{ trap.description }}</td>
+      <td class="text-right">
+        <a href="{% url 'classifier:trap_update' pk=trap.id %}" class="btn btn-primary">Update</a>
+        <a href="{% url 'classifier:trap_delete' pk=trap.id %}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
