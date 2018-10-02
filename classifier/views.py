@@ -116,3 +116,115 @@ class TrapDeleteView(DeleteView):
         context['name'] = self.model._meta.verbose_name
         context['redirect'] = 'classifier:trap_list'
         return context
+
+
+class ImageListView(ListView):
+    template_name = "classifier/list.html"
+    model = Trap_Image
+    context_object_name = "images"
+
+    def get_context_data(self, **kwargs):
+        context = super(ImageListView, self).get_context_data(**kwargs)
+        context['name'] = self.model._meta.verbose_name
+        context['length'] = self.model.objects.all().count()
+        context['redirect'] = 'classifier:image_create'
+        context['table_name'] = "classifier/tables/image_table.html"
+        return context
+
+
+class ImageCreateView(CreateView):
+    template_name = "classifier/create.html"
+    model = Trap_Image
+    form_class = ImageForm
+    success_url = reverse_lazy("classifier:image_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(ImageCreateView, self).get_context_data(**kwargs)
+        context['name'] = self.model._meta.verbose_name
+        context['redirect'] = 'classifier:image_list'
+        context['form_fields'] = 'classifier/forms/image_form.html'
+        return context
+
+
+class ImageUpdateView(UpdateView):
+    template_name = "classifier/update.html"
+    model = Trap_Image
+    fields = '__all__'
+    context_object_name = 'image'
+    success_url = reverse_lazy("classifier:image_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(ImageUpdateView, self).get_context_data(**kwargs)
+        context['name'] = self.model._meta.verbose_name
+        context['redirect'] = 'classifier:image_list'
+        context['form_fields'] = 'classifier/forms/image_form.html'
+        return context
+
+
+class ImageDeleteView(DeleteView):
+    template_name = "classifier/delete.html"
+    model = Trap_Image
+    context_object_name = 'image'
+    success_url = reverse_lazy("classifier:image_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(ImageDeleteView, self).get_context_data(**kwargs)
+        context['name'] = self.model._meta.verbose_name
+        context['redirect'] = 'classifier:image_list'
+        return context
+
+
+class DataListView(ListView):
+    template_name = "classifier/list.html"
+    model = Trap_Image_Data
+    context_object_name = "datas"
+
+    def get_context_data(self, **kwargs):
+        context = super(DataListView, self).get_context_data(**kwargs)
+        context['name'] = self.model._meta.verbose_name
+        context['length'] = self.model.objects.all().count()
+        context['redirect'] = 'classifier:data_create'
+        context['table_name'] = "classifier/tables/data_table.html"
+        return context
+
+
+class DataCreateView(CreateView):
+    template_name = "classifier/create.html"
+    model = Trap_Image_Data
+    form_class = DataForm
+    success_url = reverse_lazy("classifier:data_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(DataCreateView, self).get_context_data(**kwargs)
+        context['name'] = self.model._meta.verbose_name
+        context['redirect'] = 'classifier:data_list'
+        context['form_fields'] = 'classifier/forms/data_form.html'
+        return context
+
+
+class DataUpdateView(UpdateView):
+    template_name = "classifier/update.html"
+    model = Trap_Image
+    fields = '__all__'
+    context_object_name = 'data'
+    success_url = reverse_lazy("classifier:image_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(DataUpdateView, self).get_context_data(**kwargs)
+        context['name'] = self.model._meta.verbose_name
+        context['redirect'] = 'classifier:data_list'
+        context['form_fields'] = 'classifier/forms/data_form.html'
+        return context
+
+
+class DataDeleteView(DeleteView):
+    template_name = "classifier/delete.html"
+    model = Trap_Image
+    context_object_name = 'data'
+    success_url = reverse_lazy("classifier:image_list")
+
+    def get_context_data(self, **kwargs):
+        context = super(DataDeleteView, self).get_context_data(**kwargs)
+        context['name'] = self.model._meta.verbose_name
+        context['redirect'] = 'classifier:data_list'
+        return context

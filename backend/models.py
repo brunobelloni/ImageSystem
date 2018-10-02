@@ -47,5 +47,5 @@ class Trap_Image_Data(models.Model):
         return str(self.id)
 
     class Meta():
-        verbose_name = 'Insect_Data'
-        verbose_name_plural = 'Insect_Data'
+        verbose_name = 'Data'
+        verbose_name_plural = 'Data'
