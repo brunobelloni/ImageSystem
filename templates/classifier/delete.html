@@ -1,19 +1,19 @@
 {% extends "classifier/base.html" %}
 
-{% block title %}Deleteing Insects{% endblock %}
+{% block title %}Deleting {{ name|add:"s" }}{% endblock %}
 
 {% block conteudo %}
 <div class="container mt-5">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Insect Exclusion</h5>
-      <p class="card-text">Are you sure you want to delete the inscet <b>{{ insect.description }}</b>?</p>
+      <h5 class="card-title">{{ name }} Exclusion</h5>
+      <p class="card-text">Are you sure you want to delete the {{ name|lower }}?</p>
 
       <form method="post">
         {% csrf_token %}
         </hr>
         <div class="text-right">
-          <a href="{% url 'classifier:insect_list' %}" class="btn btn-outline-danger">No</a>
+          <a href="{% url redirect %}" class="btn btn-outline-danger">No</a>
           <button class="btn btn-danger">Yes</button>
         </div>
       </form>

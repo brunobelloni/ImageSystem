@@ -2,7 +2,7 @@
 
 {% load widget_tweaks %}
 
-{% block title %}Update of Insects{% endblock %}
+{% block title %}Update of {{ name|add:"s" }}{% endblock %}
 
 {% block conteudo %}
 <div class="container mt-5">
@@ -10,21 +10,16 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Update Insect Data</h5>
+          <h5 class="card-title">Update {{ name }} Data</h5>
           <form method="post">
             {% csrf_token %}
 
-            <!-- Description -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Nome</span>
-              </div>
-              {% render_field form.description class+="form-control" %}
-            </div>
+            <!-- Fields -->
+            {% include form_fields with form=form %}
 
             </hr>
             <div class="text-right">
-              <a href="{% url 'classifier:insect_list' %}" class="btn btn-outline-primary">Voltar</a>
+              <a href="{% url redirect %}" class="btn btn-outline-primary">Voltar</a>
               <button class="btn btn-primary">Enviar</button>
             </div>
           </form>

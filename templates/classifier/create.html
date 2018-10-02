@@ -1,8 +1,5 @@
 {% extends "classifier/base.html" %}
 
-{% load mytag %}
-{% load widget_tweaks %}
-
 {% block title %}{{ name }} Registration{% endblock %}
 
 {% block conteudo %}
@@ -17,25 +14,8 @@
           <form method="post">
             {% csrf_token %}
 
-            {% if 'Insect' == name %}
-            <!-- Description -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Description</span>
-              </div>
-              {% render_field form.description class+="form-control" %}
-            </div>
-
-            {% elif 'Trap' == name %}
-            <!-- Description -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Description</span>
-              </div>
-              {% render_field form.description class+="form-control" %}
-            </div>
-
-            {% endif %}
+            <!-- Fields -->
+            {% include form_fields with form=form %}
 
             </hr>
             <div class="text-right">
