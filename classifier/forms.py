@@ -4,24 +4,27 @@ from backend.models import Insect, Trap, Trap_Image, Trap_Image_Data
 
 
 class ImageForm(forms.ModelForm):
-    class Meta():
+
+    # img = forms.ImageField(label='Image!',)
+
+    class Meta:
         model = Trap_Image
-        fields = ['trap', 'image']
+        fields = ['trap', 'image', ]
 
 
 class InsectForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         model = Insect
         fields = ['description', ]
 
 
 class TrapForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         model = Trap
         fields = ['description', ]
 
 
 class DataForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         model = Trap_Image_Data
         fields = ['image', 'insect', 'value', 'x', 'y', ]

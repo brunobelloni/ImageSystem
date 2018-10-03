@@ -1,0 +1,29 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Image</th>
+      <th scope="col">Insect</th>
+      <th scope="col">Value</th>
+      <th scope="col">X</th>
+      <th scope="col">Y</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in datas %}
+    <tr>
+      <th scope="row">{{ data.id }}</th>
+      <td>{{ data.image }}</td>
+      <td>{{ data.insect }}</td>
+      <td>{{ data.value }}</td>
+      <td>{{ data.x }}</td>
+      <td>{{ data.y }}</td>
+      <td class="text-right">
+        <a href="{% url 'classifier:data_update' pk=data.id %}" class="btn btn-primary">Update</a>
+        <a href="{% url 'classifier:data_delete' pk=data.id %}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

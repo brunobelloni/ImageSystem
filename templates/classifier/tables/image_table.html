@@ -1,0 +1,23 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Trap</th>
+      <th scope="col">Image</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for image in images %}
+    <tr>
+      <th scope="row">{{ image.id }}</th>
+      <td>{{ image.trap }}</td>
+      <td>{{ image.image }}</td>
+      <td class="text-right">
+        <a href="{% url 'classifier:image_update' pk=image.id %}" class="btn btn-primary">Update</a>
+        <a href="{% url 'classifier:image_delete' pk=image.id %}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
