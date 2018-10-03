@@ -138,12 +138,6 @@ class ImageCreateView(CreateView):
     form_class = ImageForm
     success_url = reverse_lazy('classifier:image_list')
 
-    # def form_valid(self, form):
-    #     self.object = form.save(commit=False)
-    #     self.object.MyField_2 = 43
-    #     self.object.save()
-    #     return super(ImageCreateView, self).form_valid(form)
-
     def get_context_data(self, **kwargs):
         context = super(ImageCreateView, self).get_context_data(**kwargs)
         context['name'] = self.model._meta.verbose_name

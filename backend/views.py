@@ -1,6 +1,6 @@
 from django.contrib.auth.views import LoginView
 
 
-class MeuLoginView(LoginView):
+class CustomLoginView(LoginView):
     redirect_authenticated_user = True
-    template_name = 'login.html'
+    template_name = 'backend/login.html'

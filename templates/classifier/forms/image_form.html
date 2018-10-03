@@ -8,19 +8,30 @@
   {% render_field form.trap class+="form-control" %}
 </div>
 
+<!-- Image -->
+<div class="input-group mb-3">
+  <div class="custom-file">
+    <input type="file" name="b64_img" required="required" class="custom-file-input" accept="image/gif, image/jpeg, image/png" id="id_b64_img" onchange="readURL(this);">
+    <label class="custom-file-label" for="id_b64_img">Choose file</label>
+  </div>
+</div>
+
+<img class="rounded mx-auto d-block img-fluid" id="id_src" style="max-height:500px;object-fit:cover;">
 
 <!-- Image -->
 <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text">Image</span>
-  </div>
   {% render_field form.image class+="form-control" %}
 </div>
 
-<!-- Image -->
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text">Teste</span>
-  </div>
-  {% render_field form.img class+="form-control" %}
-</div>
+<script type="text/javascript">
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#id_image').val(e.target.result);
+        $('#id_src').attr('src', e.target.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>

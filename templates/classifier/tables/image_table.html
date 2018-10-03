@@ -9,15 +9,15 @@
   </thead>
   <tbody>
     {% for image in images %}
-    <tr>
-      <th scope="row">{{ image.id }}</th>
-      <td>{{ image.trap }}</td>
-      <td>{{ image.image }}</td>
-      <td class="text-right">
-        <a href="{% url 'classifier:image_update' pk=image.id %}" class="btn btn-primary">Update</a>
-        <a href="{% url 'classifier:image_delete' pk=image.id %}" class="btn btn-danger">Delete</a>
-      </td>
-    </tr>
+      <tr>
+        <th scope="row">{{ image.id }}</th>
+        <td>{{ image.trap }}</td>
+        <td><img src="{{ image.image }}" alt="None" style="width:100px;border:0;"></td>
+        <td class="text-right">
+          <a href="{% url 'classifier:image_update' pk=image.id %}" class="btn btn-primary">Update</a>
+          <a href="{% url 'classifier:image_delete' pk=image.id %}" class="btn btn-danger">Delete</a>
+        </td>
+      </tr>
     {% endfor %}
   </tbody>
 </table>

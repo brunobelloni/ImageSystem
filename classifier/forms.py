@@ -4,12 +4,12 @@ from backend.models import Insect, Trap, Trap_Image, Trap_Image_Data
 
 
 class ImageForm(forms.ModelForm):
-
-    # img = forms.ImageField(label='Image!',)
-
     class Meta:
         model = Trap_Image
         fields = ['trap', 'image', ]
+        widgets = {
+            'image': forms.TextInput(attrs={'type': 'hidden'}),
+        }
 
 
 class InsectForm(forms.ModelForm):
