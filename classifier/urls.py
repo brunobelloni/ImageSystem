@@ -5,7 +5,8 @@ from . import views as v
 app_name = 'classifier'
 
 urlpatterns = [
-
+    path('', v.my_view, name='index'),
+    path('search/', v.search, name='search'),
 ]
 
 

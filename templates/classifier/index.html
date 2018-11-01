@@ -1,0 +1,38 @@
+{% extends "classifier/base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block conteudo %}
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+
+        <form method="post">
+          <div class="text-center">
+            {% if insects %}
+
+            <div class="px-2">
+              <h3 class="card-text">Which <code>insect</code> is this?</h3>
+            </div>
+
+              <div class="d-flex justify-content-center row">
+                {{ img }}
+              </div>
+
+              <div class="d-flex justify-content-center row">
+                {% for insect in insects %}
+                <button type="button" class="btn btn-success">{{ insect }}</button>
+                {% endfor %}
+
+                <button type="button" class="btn btn-danger">Delete</button>
+                {% else %}
+                <h3 class="card-text">There are no <code>insects</code> registered to perform this procedure! insects!</h3>
+                {% endif %}
+              </div>
+          </div>
+        </form>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

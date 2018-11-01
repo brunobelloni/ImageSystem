@@ -7,7 +7,7 @@ from .views import CustomLoginView
 app_name = 'backend'
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', CustomLoginView.as_view(), name='login'),
+    path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('classifier/', include('classifier.urls')),
+    path('', include('classifier.urls')),
 ]

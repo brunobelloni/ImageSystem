@@ -1,10 +1,24 @@
+from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import (CreateView, DeleteView, ListView,
-                                  TemplateView, UpdateView)
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django_ajax.decorators import ajax
 
 from backend.models import Insect, Trap, Trap_Image, Trap_Image_Data
 
 from .forms import DataForm, ImageForm, InsectForm, TrapForm
+
+
+def my_view(request):
+    img = Trap_Image_Data.objects.filter(insect=None).values()[0]['value']
+    insects = Insect.objects.all()
+    dict = {'insects': insects,
+            'img': img}
+    return render(request, 'classifier/index.html', dict)
+
+
+@ajax
+def search(request):
+    return {'teste': 25, 'outro_teste': 26}
 
 
 class InsectListView(ListView):
