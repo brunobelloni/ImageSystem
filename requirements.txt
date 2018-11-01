@@ -1,6 +1,5 @@
 django
 opencv-python
 numpy
-base64
 psycopg2
 django-widget-tweaks
