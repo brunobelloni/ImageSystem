@@ -1,5 +1,5 @@
 django
 opencv-python
-numpy"
+numpy
 psycopg2
 django-widget-tweaks
