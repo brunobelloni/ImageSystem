@@ -15,6 +15,16 @@
               <h3 class="card-text">Which <code>insect</code> is this?</h3>
             </div>
 
+              
+
+              {% block js %}
+                {{ form.media }}
+              {% endblock js %}
+
+              <div class="row">
+                <div id="cropper"></div>
+              </div>
+
               <div class="d-flex justify-content-center row">
                 {{ img }}
               </div>
@@ -26,7 +36,7 @@
 
                 <button type="button" class="btn btn-danger">Delete</button>
                 {% else %}
-                <h3 class="card-text">There are no <code>insects</code> registered to perform this procedure! insects!</h3>
+                  <h3 class="card-text">There are no <code>insects</code> registered to perform this procedure!</h3>
                 {% endif %}
               </div>
           </div>
