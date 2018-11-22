@@ -1,4 +1,4 @@
-# backendClassifier
+# ImageSystem
 ## Site para classificação manual de insetos utilizando django 2.1.1
 
 Requirements:
