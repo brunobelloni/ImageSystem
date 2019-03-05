@@ -1,5 +1,3 @@
-django
-opencv-python
-numpy
+-r requirements-dev.txt
+gunicorn
 psycopg2
-django-widget-tweaks
